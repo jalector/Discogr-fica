@@ -11,7 +11,7 @@ and open the template in the editor.
 @use postcss-cssnext;
 /* helpers/align.css */
 body {
-    background-image: url("../resources/backlogin.jpg");
+    background-image: url("../resources/images/backlogin.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
