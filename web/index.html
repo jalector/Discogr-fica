@@ -10,10 +10,28 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="lib/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/animate.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
-    <body>
-        <div>TODO write content</div>
-        <button class="btn btn-info">Aceptar</button>
+    <body class="align">
+        <div class="grid animated fadeInUp">
+            <form action="/" method="post" class="form login">
+                <header class="login__header">
+                    <h3 class="login__title">Iniciar sesión</h3>
+                </header>
+                <div class="login__body">
+                    <div class="form__field">
+                        <input type="text" placeholder="Usuario" required>
+                    </div>
+                    <div class="form__field">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <footer class="login__footer">
+                    <input type="submit" value="Login">
+                </footer>
+            </form>
+        </div>
         <script src="lib/jquery-3.4.1.min.js"></script>
         <script src="lib/popper.min.js"></script>
         <script src="lib/bootstrap.min.js"></script>
