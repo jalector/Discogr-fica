@@ -17,11 +17,10 @@
     </head>
     <body>
         <nav class="navbar navbar-dark bg-primary">
-            
-               <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="#">
                 <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
                 Discográfica
-               </a>
+            </a>
             <a class="navbar-brand text-right" >Usuario</a>
         </nav>
         <div class="container-fluid">
@@ -37,14 +36,14 @@
                     <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
                 <div class="row col-10 mt-3">
-                    
+
                     <div class="col-3">
                         <div class="card">
                             <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/256/green-cd-icon.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="Disco.jsp" class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>
@@ -54,7 +53,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="Disco.jsp" class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +63,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="Disco.jsp" class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>
@@ -74,14 +73,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="Disco.jsp" class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
