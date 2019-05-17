@@ -26,14 +26,16 @@ public class ServletPrueba extends HttpServlet {
 
             switch (tipoUsuario) {
                 case "Administrador":
-                    request.getRequestDispatcher("/view/IndexAdministrador.jsp").forward(request, response);
-                    //response.sendRedirect("/Discografica/view/IndexAdministrador.jsp"); 
+                    //request.getRequestDispatcher("/view/Dashboard.jsp").forward(request, response);
+                    response.sendRedirect("view/Dashboard.jsp");
                     break;
                 case "Empleado":
-                    request.getRequestDispatcher("/view/IndexEmpleado.jsp").forward(request, response);
+                    response.sendRedirect("view/loginUsuario.jsp");
+                    //request.getRequestDispatcher("/view/loginUsuario.jsp").forward(request, response);
                     break;
                 case "Cliente":
-                    request.getRequestDispatcher("/view/IndexCliente.jsp").forward(request, response);
+                    response.sendRedirect("view/loginCliente.jsp");
+                    //request.getRequestDispatcher("/view/loginCliente.jsp").forward(request, response);
                     break;
                 case "Incorrecto":
                     /*out.println("<script type=\"text/javascript\">");
