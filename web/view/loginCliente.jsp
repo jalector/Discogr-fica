@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Dashboard
-    Created on : 12/05/2019, 02:19:23 PM
+    Document   : Admin
+    Created on : 16/05/2019, 11:32:37 PM
     Author     : Saul
 --%>
 
@@ -73,9 +73,27 @@
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="Disco.jsp" class="btn btn-primary">Go somewhere</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-cliente-ini">Go somewhere</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="modal-cliente-ini" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Bienvenido</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Consulta todos tus movimientos, compras o devoluciones</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="mensaje">Aceptar</button>
                     </div>
                 </div>
             </div>

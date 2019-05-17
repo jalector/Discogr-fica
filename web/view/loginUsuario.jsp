@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Dashboard
-    Created on : 12/05/2019, 02:19:23 PM
+    Document   : loginUsuario
+    Created on : 16/05/2019, 11:33:54 PM
     Author     : Saul
 --%>
 
@@ -29,7 +29,6 @@
                     <div class="list-group">
                         <a href="Dashboard.jsp" class="list-group-item list-group-item-action">Discos</a>
                         <a href="Carrito.jsp" class="list-group-item list-group-item-action">Carrito</a>
-                        <a href="Usuario.jsp" class="list-group-item list-group-item-action">Usuarios</a>
                         <a href="Cliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>

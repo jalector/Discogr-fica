@@ -1,0 +1,200 @@
+<%-- 
+    Document   : Almacen
+    Created on : 16/05/2019, 10:15:28 PM
+    Author     : Saul
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Almacen</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../lib/bootstrap.min.css">
+        <link rel="stylesheet" href="../lib/animate.css">
+        <link rel="stylesheet" href="../css/util.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
+                Discográfica
+            </a>
+            <a class="navbar-brand text-right" >Usuario</a>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2 p-0" style="background: #303030; height: 89vh;">
+                    <div class="list-group">
+                        <a href="Dashboard.jsp" class="list-group-item list-group-item-action">Discos</a>
+                        <a href="Carrito.jsp" class="list-group-item list-group-item-action">Carrito</a>
+                        <a href="Usuario.jsp" class="list-group-item list-group-item-action">Usuarios</a>
+                        <a href="Cliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
+                        <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
+                    </div>
+                    <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
+                </div>
+                <div class="col-10 mt-3">
+                    <div class="container-fluid p-3">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Movimientos de almacén</h3>
+                                <p>Las entradas de almacén son registradas según la mercansía ha sido vendida</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <table class="table table-hover table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Tipo movimiento</th>
+                                            <th>Fecha movimiento</th>
+                                            <th>Usuario</th>
+                                            <th>Cliente</th>
+                                            <th>Descripción</th>
+                                            <th>Detalle</th>
+                                        </tr>					
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Salida</td>
+                                            <td>12 May, 2019</td>
+                                            <td>Saul Ulises</td>
+                                            <td>Rafael Paniagua</td>
+                                            <td>Venta de discos de 50th cent</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Salida</td>
+                                            <td>12 May, 2019</td>
+                                            <td>Saul Ulises</td>
+                                            <td>Rafael Paniagua</td>
+                                            <td>Venta de discos de 50th cent</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Salida</td>
+                                            <td>12 May, 2019</td>
+                                            <td>Saul Ulises</td>
+                                            <td>Rafael Paniagua</td>
+                                            <td>Venta de discos de 50th cent</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Salida</td>
+                                            <td>12 May, 2019</td>
+                                            <td>Saul Ulises</td>
+                                            <td>Rafael Paniagua</td>
+                                            <td>Venta de discos de 50th cent</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Salida</td>
+                                            <td>12 May, 2019</td>
+                                            <td>Saul Ulises</td>
+                                            <td>Rafael Paniagua</td>
+                                            <td>Venta de discos de 50th cent</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Inicio de modal-->
+        <div class="modal" id="modal-almacen" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalle de almacén</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row px-3">
+                            <div class="col">
+                                <table class="table table-sm table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>P/U</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Disco: Off The Wall</td>
+                                            <td>3</td>
+                                            <td>70$</td>
+                                            <td>210$</td>								
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Disco: Off The Wall</td>
+                                            <td>3</td>
+                                            <td>70$</td>
+                                            <td>210$</td>								
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Disco: Off The Wall</td>
+                                            <td>3</td>
+                                            <td>70$</td>
+                                            <td>210$</td>								
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Disco: Off The Wall</td>
+                                            <td>3</td>
+                                            <td>70$</td>
+                                            <td>210$</td>								
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center" colspan="4">Total</td>
+                                            <td>840$</td>								
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row px-3">
+                            <div class="col text-right mt-3">
+                                <button class="btn btn-success">Guardar usuario</button>
+                            </div>
+                        </div>	
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fin de modal-->
+        <script src="../lib/jquery-3.4.1.min.js"></script>
+        <script src="../lib/popper.min.js"></script>
+        <script src="../lib/bootstrap.min.js"></script>
+    </body>
+</html>
