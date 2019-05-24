@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Rafa Paniagua
+ * @author Saul
  */
 @Entity
 @Table(name = "disco")
@@ -36,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Disco.findAll", query = "SELECT d FROM Disco d")
     , @NamedQuery(name = "Disco.findById", query = "SELECT d FROM Disco d WHERE d.id = :id")
     , @NamedQuery(name = "Disco.findByTitulo", query = "SELECT d FROM Disco d WHERE d.titulo = :titulo")
+    , @NamedQuery(name = "Disco.findByArtista", query = "SELECT d FROM Disco d WHERE d.artista = :artista")
     , @NamedQuery(name = "Disco.findByPrecio", query = "SELECT d FROM Disco d WHERE d.precio = :precio")
     , @NamedQuery(name = "Disco.findByImagen", query = "SELECT d FROM Disco d WHERE d.imagen = :imagen")
     , @NamedQuery(name = "Disco.findByExistencia", query = "SELECT d FROM Disco d WHERE d.existencia = :existencia")
@@ -61,6 +59,11 @@ public class Disco implements Serializable {
     private String titulo;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "artista")
+    private String artista;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "precio")
     private float precio;
     @Size(max = 100)
@@ -79,14 +82,14 @@ public class Disco implements Serializable {
     private String descripcion;
     @Column(name = "id_usuario_alta")
     private Integer idUsuarioAlta;
+    @Size(max = 10)
     @Column(name = "fecha_alta")
-    @Temporal(TemporalType.DATE)
-    private Date fechaAlta;
+    private String fechaAlta;
     @Column(name = "id_usuario_modificacion")
     private Integer idUsuarioModificacion;
+    @Size(max = 10)
     @Column(name = "fecha_modificacion")
-    @Temporal(TemporalType.DATE)
-    private Date fechaModificacion;
+    private String fechaModificacion;
     @OneToMany(mappedBy = "idDisco")
     private Collection<Detalle> detalleCollection;
 
@@ -97,9 +100,10 @@ public class Disco implements Serializable {
         this.id = id;
     }
 
-    public Disco(Integer id, String titulo, float precio) {
+    public Disco(Integer id, String titulo, String artista, float precio) {
         this.id = id;
         this.titulo = titulo;
+        this.artista = artista;
         this.precio = precio;
     }
 
@@ -117,6 +121,14 @@ public class Disco implements Serializable {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
     }
 
     public float getPrecio() {
@@ -175,11 +187,11 @@ public class Disco implements Serializable {
         this.idUsuarioAlta = idUsuarioAlta;
     }
 
-    public Date getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -191,11 +203,11 @@ public class Disco implements Serializable {
         this.idUsuarioModificacion = idUsuarioModificacion;
     }
 
-    public Date getFechaModificacion() {
+    public String getFechaModificacion() {
         return fechaModificacion;
     }
 
-    public void setFechaModificacion(Date fechaModificacion) {
+    public void setFechaModificacion(String fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
 
@@ -230,7 +242,7 @@ public class Disco implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Disco[ id=" + id + " ]";
+        return "model.Disco[ id=" + id + " ]";
     }
     
 }

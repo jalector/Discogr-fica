@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,8 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Rafa Paniagua
+ * @author Saul
  */
 @Entity
 @Table(name = "almacen")
@@ -53,9 +50,9 @@ public class Almacen implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "tipo_movimiento")
     private String tipoMovimiento;
+    @Size(max = 10)
     @Column(name = "fecha_movimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaMovimiento;
+    private String fechaMovimiento;
     @Size(max = 100)
     @Column(name = "descripcion")
     private String descripcion;
@@ -96,11 +93,11 @@ public class Almacen implements Serializable {
         this.tipoMovimiento = tipoMovimiento;
     }
 
-    public Date getFechaMovimiento() {
+    public String getFechaMovimiento() {
         return fechaMovimiento;
     }
 
-    public void setFechaMovimiento(Date fechaMovimiento) {
+    public void setFechaMovimiento(String fechaMovimiento) {
         this.fechaMovimiento = fechaMovimiento;
     }
 
@@ -159,7 +156,7 @@ public class Almacen implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Almacen[ id=" + id + " ]";
+        return "model.Almacen[ id=" + id + " ]";
     }
     
 }

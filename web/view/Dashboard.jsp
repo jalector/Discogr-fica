@@ -51,12 +51,12 @@
                 for (Object []disco : listaDisco) {
 
                     out.println("<div class='col-3'>");
-                    out.println("<div class'card'>");
-                    out.println("<img src='"+String.valueOf(disco[1])+"' class='card-img-top'>");
+                    out.println("<div class='card'>");
+                    out.println("<img src='"+String.valueOf(disco[2])+"' class='card-img-top'>");
                     out.println("<div class='card-body'>");
-                    out.println("<h5 class='card-title'>"+String.valueOf(disco[0])+"</h5>");
-                    out.println("<p class='card-text'>"+String.valueOf(disco[2])+"</p>");
-                    out.println("<a href='Disco.jsp' class='btn btn-primary'>Go somewhere</a>");
+                    out.println("<h5 class='card-title'>"+String.valueOf(disco[1])+"</h5>");
+                    out.println("<p class='card-text'>"+String.valueOf(disco[3])+"</p>");
+                    out.println("<a href='Disco.jsp?id="+String.valueOf(disco[0])+"' class='btn btn-primary'>Más detalles</a>");
                     out.println("</div>");
                     out.println("</div>");
                     out.println("</div>");

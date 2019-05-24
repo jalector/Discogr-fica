@@ -47,8 +47,8 @@
                     <div class="container-fluid p-3">
                         <div class="row">
                             <div class="col">
-                                <h3>Usuarios</h3>
-                                <p>Para ver más detalles acerca del usuario pulsa en el botón de ver detalle</p>
+                                <h3>Productos</h3>
+                                <p>Para ver más detalles acerca de un producto, pulsa en el botón de ver detalle</p>
                             </div>
                         </div>
                         <div class="row">
@@ -58,11 +58,11 @@
                                         <tr>
                                             <td>Id</td>
                                             <td>Titulo</td>
+                                            <td>Artista</td>
                                             <td>Precio</td>
                                             <td>Existencia</td>
                                             <td>Genero</td>
                                             <td>Ubicación</td>
-                                            <td>Descripción</td>
                                             <td class="text-center">Opciones</td>
                                         </tr>
                                     </thead>
@@ -106,7 +106,7 @@
         <!--Inicio de modal insertar-->
         <div class="modal" id="modal-disco-ins" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-                <form class="modal-content" action="../InsertarDisco" method="POST">
+                <form class="modal-content" action="../InsertarDisco">
                     <div class="modal-header">
                         <h5 class="modal-title">Insertar disco</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -120,6 +120,9 @@
                                     <label class="font-weight-bold">Características de disco</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="titulo" placeholder="Titulo">
+                                        <input type="text" class="form-control" name="artista" placeholder="Artista">
+                                    </div>
+                                    <div class="input-group mt-3">
                                         <input type="text" class="form-control" name="precio" placeholder="Precio">
                                         <input type="text" class="form-control" name="genero" placeholder="Genero">
                                     </div>

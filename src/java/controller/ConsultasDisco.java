@@ -27,7 +27,7 @@ public class ConsultasDisco implements Serializable{
     }
     
     public List<Object[]> discos(){
-        String Discos = "SELECT id, titulo, precio, existencia, genero, ubicacion, descripcion FROM Disco";
+        String Discos = "SELECT id, titulo, artista, precio, existencia, genero, ubicacion FROM Disco";
         EntityManager em = getEntityManager();
         Query consulta = em.createNativeQuery(Discos);
         List<Object[]> listaDisco = consulta.getResultList();
@@ -35,7 +35,15 @@ public class ConsultasDisco implements Serializable{
     }
     
     public List<Object[]> infoGralDisco(){
-        String Discos = "SELECT titulo, imagen, descripcion FROM Disco";
+        String Discos = "SELECT id, titulo, imagen, descripcion FROM Disco";
+        EntityManager em = getEntityManager();
+        Query consulta = em.createNativeQuery(Discos);
+        List<Object[]> listaDisco = consulta.getResultList();
+        return listaDisco;
+    }
+    
+    public List<Object[]> ontenerUnDisco(int id){
+        String Discos = "SELECT id, titulo, artista, imagen, genero, descripcion FROM Disco where id="+id;
         EntityManager em = getEntityManager();
         Query consulta = em.createNativeQuery(Discos);
         List<Object[]> listaDisco = consulta.getResultList();

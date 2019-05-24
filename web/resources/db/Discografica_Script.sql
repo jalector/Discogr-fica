@@ -5,41 +5,42 @@ SET SQL_SAFE_UPDATES = 0;
 
 CREATE TABLE Usuario(
 	id 						int 		not null auto_increment,
-	nombre 					varchar(50) not null,
-	apellidos 				varchar(50) not null,
-	contrasenia 			varchar(20) not null,
-	telefono 				varchar(10),
-	direccion 				varchar(80),
-	correo 					varchar(30),
-	tipo_usuario 			varchar(20) not null,
+	nombre 					nvarchar(50) not null,
+	apellidos 				nvarchar(50) not null,
+	contrasenia 			nvarchar(20) not null,
+	telefono 				nvarchar(10),
+	direccion 				nvarchar(80),
+	correo 					nvarchar(30),
+	tipo_usuario 			nvarchar(20) not null,
 	id_usuario_alta 		int,
-	fecha_alta 				date,
+	fecha_alta 				nvarchar(10),
 	id_usuario_modificacion int,
-	fecha_modificacion 		date,
+	fecha_modificacion 		nvarchar(10),
 	primary key (id)
 );
 
 CREATE TABLE Disco(
 	id 						int 		 not null auto_increment,
-	titulo 					varchar(30)  not null,
+	titulo 					nvarchar(30)  not null,
+	artista					nvarchar(50) not null,
 	precio 					float(10,2)  not null,
-	imagen		 			varchar(100),
+	imagen		 			nvarchar(100),
 	existencia 				int,
-	genero	 				varchar(30),
-	ubicacion 				varchar(20),
-	descripcion 			varchar(50),
+	genero	 				nvarchar(30),
+	ubicacion 				nvarchar(20),
+	descripcion 			nvarchar(50),
 	id_usuario_alta 		int,
-	fecha_alta 				date,
+	fecha_alta 				nvarchar(10),
 	id_usuario_modificacion int,
-	fecha_modificacion 		date,
+	fecha_modificacion 		nvarchar(10),
 	primary key (id)
 );
 
 CREATE TABLE Almacen(
 	id 				 int 		 not null auto_increment,
-	tipo_movimiento	 varchar(30) not null,
-	fecha_movimiento date,
-	descripcion		 varchar(100),
+	tipo_movimiento	 nvarchar(30) not null,
+	fecha_movimiento nvarchar(10),
+	descripcion		 nvarchar(100),
 	id_usuario 		 int,
 	id_cliente		 int,
 	primary key (id),
@@ -57,5 +58,10 @@ CREATE TABLE Detalle(
 	foreign key (id_movimiento) references Almacen(id) on delete cascade on update cascade
 );
 
-select * from Usuario;
-select * from Disco;
+
+insert into Usuario values(null,'Luis Saul', 'Ornelas Pérez','1234','4773548504','barcenas 602','saulop97@outlook.com','Administrador',1,'2019-05-24',1,'2019-05-24');
+
+insert into Disco values(null,'Revival','Eminem',400,'https://i1.cdn.hhv.de/catalog/475x475/00588/588736.jpg',
+                         10,'Hip hop','Bla bla','Disco chidote',1,'2019-05-10',1,'2019-05-24');
+
+#select * from Usuario;

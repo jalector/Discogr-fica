@@ -4,6 +4,11 @@
     Author     : Saul
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="controller.ConsultasDisco"%>
+<%@page import="javax.persistence.Persistence"%>
+<%@page import="javax.persistence.EntityManagerFactory"%>
+<%@page import="javax.persistence.EntityManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,6 +36,7 @@
                         <a href="Carrito.jsp" class="list-group-item list-group-item-action">Carrito</a>
                         <a href="Usuario.jsp" class="list-group-item list-group-item-action">Usuarios</a>
                         <a href="Cliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
+                        <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
                     <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
@@ -38,10 +44,34 @@
                 <div class="row col-10 mt-3">
                     <div class="container-fluid">
                         <div class="row">
+                            <%
+                                /***Nota importante: Si se necesita el id del disco para añadirlo al carrillo usar la variable "id" **/
+                                //Código para obtener toda la información del disco
+                                
+                                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+                                EntityManager em = emf.createEntityManager();
+                                ConsultasDisco conDisco = new ConsultasDisco(emf);
+                                List<Object[]> dis = conDisco.ontenerUnDisco(Integer.parseInt(request.getParameter("id")));
+                                String id = "";
+                                String titulo = "";
+                                String artista = "";
+                                String imagen = "";
+                                String genero = "";
+                                String descripcion = "";
+                                for (Object[] disco : dis) {
+                                    id = String.valueOf(disco[0]);
+                                    titulo = String.valueOf(disco[1]);
+                                    artista = String.valueOf(disco[2]);
+                                    imagen = String.valueOf(disco[3]);
+                                    genero = String.valueOf(disco[4]);
+                                    descripcion = String.valueOf(disco[5]);
+                                }
+                            %>
                             <div class="col-4">
                                 <div class="row">
                                     <div class="col-12">
-                                        <img src="https://images-na.ssl-images-amazon.com/images/I/812EgYpATnL._SL1500_.jpg" width="100%" style="border-radius:15px" alt="Imagen de disco">
+
+                                        <img src="<%=imagen%>" width="100%" style="border-radius:15px" alt="Imagen de disco">
                                     </div>
                                     <div class="col-12 mt-3">
                                         <div class="row">
@@ -62,9 +92,9 @@
 
                             </div>
                             <div class="col-7">
-                                <h1 style="display:inline">Off the wall </h1><span>(pop)</span><br>
-                                <h4 class="text-muted">Michael Jackson</h4>
-                                <p class="mt-5">Michael Jackson wasn't merely the biggest pop star of his era, shaping the sound and style of the '70s and '80s; he was one of the defining stars of the 20th century, a musician who changed the contours of American culture.</p>
+                                <h1 style="display:inline"><%= titulo %></h1><span> (<%= genero %>)</span><br>
+                                <h4 class="text-muted"><%= artista%></h4>
+                                <p class="mt-5"><%=descripcion%></p>
                             </div>
                         </div>
                     </div>

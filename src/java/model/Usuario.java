@@ -7,7 +7,6 @@ package model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,13 +24,13 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Rafa Paniagua
+ * @author Saul
  */
 @Entity
 @Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
-      @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id")
     , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos")
@@ -85,14 +82,14 @@ public class Usuario implements Serializable {
     private String tipoUsuario;
     @Column(name = "id_usuario_alta")
     private Integer idUsuarioAlta;
+    @Size(max = 10)
     @Column(name = "fecha_alta")
-    @Temporal(TemporalType.DATE)
-    private Date fechaAlta;
+    private String fechaAlta;
     @Column(name = "id_usuario_modificacion")
     private Integer idUsuarioModificacion;
+    @Size(max = 10)
     @Column(name = "fecha_modificacion")
-    @Temporal(TemporalType.DATE)
-    private Date fechaModificacion;
+    private String fechaModificacion;
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Almacen> almacenCollection;
     @OneToMany(mappedBy = "idCliente")
@@ -185,11 +182,11 @@ public class Usuario implements Serializable {
         this.idUsuarioAlta = idUsuarioAlta;
     }
 
-    public Date getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -201,11 +198,11 @@ public class Usuario implements Serializable {
         this.idUsuarioModificacion = idUsuarioModificacion;
     }
 
-    public Date getFechaModificacion() {
+    public String getFechaModificacion() {
         return fechaModificacion;
     }
 
-    public void setFechaModificacion(Date fechaModificacion) {
+    public void setFechaModificacion(String fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
 
@@ -249,7 +246,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.Usuario[ id=" + id + " ]";
+        return "model.Usuario[ id=" + id + " ]";
     }
     
 }

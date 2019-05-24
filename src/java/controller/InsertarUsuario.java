@@ -7,6 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -30,6 +33,8 @@ public class InsertarUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
         emf = Persistence.createEntityManagerFactory("DiscograficaPU");
         em = emf.createEntityManager();
         //tx = em.getTransaction();
@@ -46,10 +51,10 @@ public class InsertarUsuario extends HttpServlet {
                 usuario.setTelefono(request.getParameter("telefono"));
                 usuario.setTipoUsuario(request.getParameter("tipo"));
                 usuario.setContrasenia(request.getParameter("repPass"));
-                usuario.setIdUsuarioAlta(null);
-                usuario.setFechaAlta(null);
-                usuario.setIdUsuarioModificacion(null);
-                usuario.setFechaModificacion(null);
+                usuario.setIdUsuarioAlta(1);
+                usuario.setFechaAlta(String.valueOf(hourdateFormat.format(date)));
+                usuario.setIdUsuarioModificacion(1);
+                usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
                 em.getTransaction().begin();
                 em.persist(usuario);
