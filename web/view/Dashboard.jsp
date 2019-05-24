@@ -4,6 +4,11 @@
     Author     : Saul
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="controller.ConsultasDisco"%>
+<%@page import="javax.persistence.EntityManager"%>
+<%@page import="javax.persistence.Persistence"%>
+<%@page import="javax.persistence.EntityManagerFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,10 +36,37 @@
                         <a href="Carrito.jsp" class="list-group-item list-group-item-action">Carrito</a>
                         <a href="Usuario.jsp" class="list-group-item list-group-item-action">Usuarios</a>
                         <a href="Cliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
+                        <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
                     <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
+                <div class="row col-10 mt-3">
+                <% 
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+                EntityManager em = emf.createEntityManager();
+                ConsultasDisco conDisco = new ConsultasDisco(emf);
+                List<Object[]> listaDisco = conDisco.infoGralDisco();
+                int contRow = 0;
+                for (Object []disco : listaDisco) {
+
+                    out.println("<div class='col-3'>");
+                    out.println("<div class'card'>");
+                    out.println("<img src='"+String.valueOf(disco[1])+"' class='card-img-top'>");
+                    out.println("<div class='card-body'>");
+                    out.println("<h5 class='card-title'>"+String.valueOf(disco[0])+"</h5>");
+                    out.println("<p class='card-text'>"+String.valueOf(disco[2])+"</p>");
+                    out.println("<a href='Disco.jsp' class='btn btn-primary'>Go somewhere</a>");
+                    out.println("</div>");
+                    out.println("</div>");
+                    out.println("</div>");
+
+                    contRow++;
+
+                }
+                %>
+                </div>
+                <!--
                 <div class="row col-10 mt-3">
 
                     <div class="col-3">
@@ -78,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
         <script src="../lib/jquery-3.4.1.min.js"></script>

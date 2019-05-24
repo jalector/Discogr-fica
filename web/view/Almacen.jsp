@@ -117,6 +117,11 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-warning">Agregar disco</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -193,6 +198,64 @@
             </div>
         </div>
         <!--Fin de modal-->
+        <!--Inicio de modal agregar producto-->
+        <div class="modal" id="modal-usuario-mod" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content" action="../ModificarUsuario">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalle de usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row px-3">
+                            <div class="col">
+                                <div class="form-row">
+                                    <label class="font-weight-bold">Nombre completo</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="nombre_mod" placeholder="Nombre">
+                                        <input type="text" class="form-control" name="apellido_mod" placeholder="Apellido">
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Datos personales</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="direccion_mod" placeholder="Dirección">
+                                        <input type="text" class="form-control" name="correo_mod" placeholder="Correo">
+                                        <input type="text" class="form-control" name="telefono_mod" placeholder="Teléfono">
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Credenciales</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="tipo_mod" placeholder="Tipo usuario">
+                                        <input type="text" class="form-control" name="pass_mod" placeholder="Contraseña">
+                                        <input type="text" class="form-control" name="repPass_mod" placeholder="Repetir contraseña">
+                                    </div>
+
+                                    <label class="font-weight-bold mt-2">Detalles de creación</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="fecAlta_mod" placeholder="Fecha alta">
+                                        <input type="text" class="form-control" name="usrAlta_mod" placeholder="Usuario alta">
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Detalles de modificación</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="fecMod_mod" placeholder="Fecha de modificación">
+                                        <input type="text" class="form-control" name="usrMod_mod" placeholder="Usuario de modificación">
+                                    </div>
+                                    <% request.setAttribute("tipo_operacion", 1);%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row px-3">
+                            <div class="col text-right mt-3">
+                                <input class="btn btn-success" type="submit" value="Modificar" name="tipo_op"></input>
+                            </div>
+                        </div>	
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>

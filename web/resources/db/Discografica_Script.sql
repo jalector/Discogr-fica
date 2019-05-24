@@ -56,3 +56,6 @@ CREATE TABLE Detalle(
 	foreign key (id_disco) 		references Disco(id) on delete cascade on update cascade,
 	foreign key (id_movimiento) references Almacen(id) on delete cascade on update cascade
 );
+
+select * from Usuario;
+select * from Disco;

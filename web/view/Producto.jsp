@@ -1,9 +1,10 @@
 <%-- 
-    Document   : Usuarios
-    Created on : 16/05/2019, 09:54:59 PM
+    Document   : Producto
+    Created on : 23/05/2019, 11:32:40 PM
     Author     : Saul
 --%>
 
+<%@page import="controller.ConsultasDisco"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="javax.persistence.Persistence"%>
@@ -56,34 +57,31 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <td>Id</td>
-                                            <td>Nombre</td>
-                                            <td>Apellidos</td>
-                                            <td>Teléfono</td>
-                                            <td>Dirección</td>
-                                            <td>Correo</td>
-                                            <td>Rol</td>
+                                            <td>Titulo</td>
+                                            <td>Precio</td>
+                                            <td>Existencia</td>
+                                            <td>Genero</td>
+                                            <td>Ubicación</td>
+                                            <td>Descripción</td>
                                             <td class="text-center">Opciones</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
-                                            String UsuarioFindAll ="SELECT * FROM Usuario";
-                                            EntityManagerFactory emf;
-                                            EntityManager em;
-                                            emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                            em = emf.createEntityManager();
-                                            Query consulta = em.createNativeQuery(UsuarioFindAll);
-                                            List<Object[]> listaUsuario = consulta.getResultList();
+                                            EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+                                            EntityManager em = emf.createEntityManager();
+                                            ConsultasDisco conDisco = new ConsultasDisco(emf);
+                                            List<Object[]> listaDisco = conDisco.discos();
                                             
-                                            for (Object []usr : listaUsuario) {
+                                            for (Object []disco : listaDisco) {
                                                 out.println("<tr>");
-                                                out.println("<td>"+String.valueOf(usr[0])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[1])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[2])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[3])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[4])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[5])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[6])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[0])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[1])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[2])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[3])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[4])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[5])+"</td>");
+                                                out.println("<td>"+String.valueOf(disco[6])+"</td>");
                                                 out.println("<td class='text-center'>" +
                                                     "<button class='btn btn-info btn-sm mr-1' data-toggle='modal' data-target='#modal-usuario-mod'>Detalle</button>" +
                                                     "<button class='btn btn-danger btn-sm' data-toggle='modal' data-target='#modal-usuario-eli'>Eliminar</button>" +
@@ -92,78 +90,13 @@
                                                 
                                             }
                                         %>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col text-right">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-usuario-ins">Registrar nuevo usuario</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-disco-ins">Registrar nuevo disco</button>
                             </div>
                         </div>
                     </div>
@@ -171,11 +104,11 @@
             </div>
         </div>
         <!--Inicio de modal insertar-->
-        <div class="modal" id="modal-usuario-ins" tabindex="-1" role="dialog">
+        <div class="modal" id="modal-disco-ins" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-                <form class="modal-content" action="../InsertarUsuario">
+                <form class="modal-content" action="../InsertarDisco" method="POST">
                     <div class="modal-header">
-                        <h5 class="modal-title">Insertar usuario</h5>
+                        <h5 class="modal-title">Insertar disco</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -184,22 +117,22 @@
                         <div class="row px-3">
                             <div class="col">
                                 <div class="form-row">
-                                    <label class="font-weight-bold">Nombre completo</label>
+                                    <label class="font-weight-bold">Características de disco</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre">
-                                        <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+                                        <input type="text" class="form-control" name="titulo" placeholder="Titulo">
+                                        <input type="text" class="form-control" name="precio" placeholder="Precio">
+                                        <input type="text" class="form-control" name="genero" placeholder="Genero">
                                     </div>
-                                    <label class="font-weight-bold mt-2">Datos personales</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="direccion" placeholder="Dirección">
-                                        <input type="text" class="form-control" name="correo" placeholder="Correo">
-                                        <input type="text" class="form-control" name="telefono" placeholder="Teléfono">
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" name="imagen" placeholder="URL de imagen">
                                     </div>
-                                    <label class="font-weight-bold mt-2">Credenciales</label>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" name="descripcion" placeholder="Descricpción">
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Datos de almacén</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="tipo" placeholder="Tipo usuario">
-                                        <input type="text" class="form-control" name="pass" placeholder="Contraseña">
-                                        <input type="text" class="form-control" name="repPass" placeholder="Repetir contraseña">
+                                        <input type="text" class="form-control" name="existencia" placeholder="Existencia">
+                                        <input type="text" class="form-control" name="ubicacion" placeholder="Ubicación">
                                     </div>
                                     <!--
                                     <label class="font-weight-bold mt-2">Detalles de creación</label>
@@ -325,4 +258,3 @@
         <script src="../lib/bootstrap.min.js"></script>
     </body>
 </html>
-
