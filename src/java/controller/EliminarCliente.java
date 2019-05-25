@@ -20,7 +20,7 @@ import model.Usuario;
  *
  * @author Saul
  */
-public class EliminarUsuario extends HttpServlet {
+public class EliminarCliente extends HttpServlet {
 
     EntityManagerFactory emf;
     EntityManager em;
@@ -41,9 +41,8 @@ public class EliminarUsuario extends HttpServlet {
         usuario = new Usuario();
 
         try {
-            int idUsuario = Integer.parseInt(request.getParameter("id"));
-            System.out.println("Ide asdasd"+ idUsuario);
-            usuario = em.find(Usuario.class, idUsuario);
+            int idCliente = Integer.parseInt(request.getParameter("id"));
+            usuario = em.find(Usuario.class, idCliente);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +50,7 @@ public class EliminarUsuario extends HttpServlet {
         try {
             em.remove(usuario);
             em.getTransaction().commit();
-            response.sendRedirect("view/Usuario.jsp");
+            response.sendRedirect("view/Cliente.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

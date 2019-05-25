@@ -50,4 +50,12 @@ public class ConsultasDisco implements Serializable{
         return listaDisco;
     }
     
+    public List<Object[]> ontenerDetallesDisco(int id){
+        String Discos = "SELECT * FROM Disco where id="+id;
+        EntityManager em = getEntityManager();
+        Query consulta = em.createNativeQuery(Discos);
+        List<Object[]> listaDisco = consulta.getResultList();
+        return listaDisco;
+    }
+    
 }

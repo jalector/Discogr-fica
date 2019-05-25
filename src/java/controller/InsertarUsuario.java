@@ -28,7 +28,6 @@ public class InsertarUsuario extends HttpServlet {
 
     EntityManagerFactory emf;
     EntityManager em;
-    EntityTransaction tx;
     Usuario usuario;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -20,7 +20,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Usuario;
 
-public class ModificarUsuario extends HttpServlet {
+/**
+ *
+ * @author Saul
+ */
+public class InsertarCliente extends HttpServlet {
 
     EntityManagerFactory emf;
     EntityManager em;
@@ -32,26 +36,30 @@ public class ModificarUsuario extends HttpServlet {
         DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
         emf = Persistence.createEntityManagerFactory("DiscograficaPU");
         em = emf.createEntityManager();
+        //tx = em.getTransaction();
+
+        //tipoOperacion = request.getParameter("tipo_op");
         usuario = new Usuario();
-        
-        try {
-                int idUsuario = Integer.parseInt(request.getParameter("id_mod"));
-                usuario = em.find(Usuario.class,idUsuario);
-                usuario.setNombre(request.getParameter("nombre_mod"));
-                usuario.setApellidos(request.getParameter("apellido_mod"));
-                usuario.setDireccion(request.getParameter("direccion_mod"));
-                usuario.setCorreo(request.getParameter("correo_mod"));
-                usuario.setTelefono(request.getParameter("telefono_mod"));
-                usuario.setTipoUsuario(request.getParameter("tipo_mod"));
-                usuario.setContrasenia(request.getParameter("repPass_mod"));
-                usuario.setIdUsuarioModificacion(2);
+         try {
+                //System.out.println(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt));
+                
+                usuario.setNombre(request.getParameter("nombre"));
+                usuario.setApellidos(request.getParameter("apellido"));
+                usuario.setDireccion(request.getParameter("direccion"));
+                usuario.setCorreo(request.getParameter("correo"));
+                usuario.setTelefono(request.getParameter("telefono"));
+                usuario.setTipoUsuario("Cliente");
+                usuario.setContrasenia(request.getParameter("repPass"));
+                usuario.setIdUsuarioAlta(1);
+                usuario.setFechaAlta(String.valueOf(hourdateFormat.format(date)));
+                usuario.setIdUsuarioModificacion(1);
                 usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
                 em.getTransaction().begin();
                 em.persist(usuario);
                 em.flush();
                 em.getTransaction().commit();
-                response.sendRedirect("view/Usuario.jsp");
+                response.sendRedirect("view/Cliente.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
                 //response.sendRedirect("view/Usuario.jsp");

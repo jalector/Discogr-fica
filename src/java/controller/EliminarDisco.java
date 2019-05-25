@@ -7,55 +7,29 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Usuario;
+import model.Disco;
 
-public class ModificarUsuario extends HttpServlet {
+/**
+ *
+ * @author Saul
+ */
+public class EliminarDisco extends HttpServlet {
 
     EntityManagerFactory emf;
     EntityManager em;
-    Usuario usuario;
+    Disco disco;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Date date = new Date();
-        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-        em = emf.createEntityManager();
-        usuario = new Usuario();
-        
-        try {
-                int idUsuario = Integer.parseInt(request.getParameter("id_mod"));
-                usuario = em.find(Usuario.class,idUsuario);
-                usuario.setNombre(request.getParameter("nombre_mod"));
-                usuario.setApellidos(request.getParameter("apellido_mod"));
-                usuario.setDireccion(request.getParameter("direccion_mod"));
-                usuario.setCorreo(request.getParameter("correo_mod"));
-                usuario.setTelefono(request.getParameter("telefono_mod"));
-                usuario.setTipoUsuario(request.getParameter("tipo_mod"));
-                usuario.setContrasenia(request.getParameter("repPass_mod"));
-                usuario.setIdUsuarioModificacion(2);
-                usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
-                em.getTransaction().begin();
-                em.persist(usuario);
-                em.flush();
-                em.getTransaction().commit();
-                response.sendRedirect("view/Usuario.jsp");
-            } catch (Exception e) {
-                e.printStackTrace();
-                //response.sendRedirect("view/Usuario.jsp");
-            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +45,25 @@ public class ModificarUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+        em = emf.createEntityManager();
+        disco = new Disco();
+
+        try {
+            int idDisco = Integer.parseInt(request.getParameter("id"));
+            System.out.println("Ide asdasd"+ idDisco);
+            disco = em.find(Disco.class, idDisco);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        em.getTransaction().begin();
+        try {
+            em.remove(disco);
+            em.getTransaction().commit();
+            response.sendRedirect("view/Producto.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

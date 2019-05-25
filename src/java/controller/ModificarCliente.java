@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Usuario;
 
-public class ModificarUsuario extends HttpServlet {
+public class ModificarCliente extends HttpServlet {
 
     EntityManagerFactory emf;
     EntityManager em;
@@ -42,7 +42,6 @@ public class ModificarUsuario extends HttpServlet {
                 usuario.setDireccion(request.getParameter("direccion_mod"));
                 usuario.setCorreo(request.getParameter("correo_mod"));
                 usuario.setTelefono(request.getParameter("telefono_mod"));
-                usuario.setTipoUsuario(request.getParameter("tipo_mod"));
                 usuario.setContrasenia(request.getParameter("repPass_mod"));
                 usuario.setIdUsuarioModificacion(2);
                 usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
@@ -51,7 +50,7 @@ public class ModificarUsuario extends HttpServlet {
                 em.persist(usuario);
                 em.flush();
                 em.getTransaction().commit();
-                response.sendRedirect("view/Usuario.jsp");
+                response.sendRedirect("view/Cliente.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
                 //response.sendRedirect("view/Usuario.jsp");

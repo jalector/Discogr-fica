@@ -60,8 +60,10 @@ CREATE TABLE Detalle(
 
 
 insert into Usuario values(null,'Luis Saul', 'Ornelas Pérez','1234','4773548504','barcenas 602','saulop97@outlook.com','Administrador',1,'2019-05-24',1,'2019-05-24');
+insert into Usuario values(null,'Petronilo', 'Sanchez','1234','4773548504','Madrid','petr@outlook.com','Cliente',1,'2019-05-24',1,'2019-05-24');
 
 insert into Disco values(null,'Revival','Eminem',400,'https://i1.cdn.hhv.de/catalog/475x475/00588/588736.jpg',
                          10,'Hip hop','Bla bla','Disco chidote',1,'2019-05-10',1,'2019-05-24');
 
 #select * from Usuario;
+#select * from Disco;

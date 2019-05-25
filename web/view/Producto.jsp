@@ -72,22 +72,21 @@
                                             EntityManager em = emf.createEntityManager();
                                             ConsultasDisco conDisco = new ConsultasDisco(emf);
                                             List<Object[]> listaDisco = conDisco.discos();
-                                            
-                                            for (Object []disco : listaDisco) {
+
+                                            for (Object[] disco : listaDisco) {
                                                 out.println("<tr>");
-                                                out.println("<td>"+String.valueOf(disco[0])+"</td>");
-                                                out.println("<td>"+String.valueOf(disco[1])+"</td>");
-                                                out.println("<td>"+String.valueOf(disco[2])+"</td>");
-                                                out.println("<td>"+String.valueOf(disco[3])+"</td>");
-                                                out.println("<td>"+String.valueOf(disco[4])+"</td>");
-                                                out.println("<td>"+String.valueOf(disco[5])+"</td>");
-                                                out.println("<td>"+String.valueOf(disco[6])+"</td>");
-                                                out.println("<td class='text-center'>" +
-                                                    "<button class='btn btn-info btn-sm mr-1' data-toggle='modal' data-target='#modal-usuario-mod'>Detalle</button>" +
-                                                    "<button class='btn btn-danger btn-sm' data-toggle='modal' data-target='#modal-usuario-eli'>Eliminar</button>" +
-                                                "</td>");
+                                                out.println("<td><span id='id" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[0]) + "</span></td>");
+                                                out.println("<td><span id='titulo" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[1]) + "</span></td>");
+                                                out.println("<td><span id='artista" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[2]) + "</span></td>");
+                                                out.println("<td><span id='precio" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[3]) + "</span></td>");
+                                                out.println("<td><span id='existencia" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[4]) + "</span></td>");
+                                                out.println("<td><span id='genero" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[5]) + "</span></td>");
+                                                out.println("<td><span id='ubicacion" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[6]) + "</span></td>");
+                                                out.println("<td class='text-center'>"
+                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaProducto.jsp?id=" + String.valueOf(disco[0]) + "'>Modificar</a>"
+                                                        + "<a class='btn btn-danger btn-sm mr-1' href='../EliminarDisco?id=" + String.valueOf(disco[0]) + "'>Eliminar</a>"
+                                                        + "</td>");
                                                 out.println("</tr>");
-                                                
                                             }
                                         %>
                                     </tbody>
@@ -166,11 +165,11 @@
         <!--Fin de modal insertar-->
 
         <!--Inicio de modal modificar-->
-        <div class="modal" id="modal-usuario-mod" tabindex="-1" role="dialog">
+        <div class="modal" id="modal-disco-mod" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
-                <form class="modal-content" action="../ModificarUsuario">
+                <form class="modal-content" action="../ModificarDisco">
                     <div class="modal-header">
-                        <h5 class="modal-title">Detalle de usuario</h5>
+                        <h5 class="modal-title">Insertar disco</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -179,35 +178,37 @@
                         <div class="row px-3">
                             <div class="col">
                                 <div class="form-row">
-                                    <label class="font-weight-bold">Nombre completo</label>
+                                    <label class="font-weight-bold">Características de disco</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="nombre_mod" placeholder="Nombre">
-                                        <input type="text" class="form-control" name="apellido_mod" placeholder="Apellido">
+                                        <input type="text" class="form-control" name="titulo_mod" placeholder="Titulo">
+                                        <input type="text" class="form-control" name="artista_mod" placeholder="Artista">
                                     </div>
-                                    <label class="font-weight-bold mt-2">Datos personales</label>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" name="precio_mod" placeholder="Precio">
+                                        <input type="text" class="form-control" name="genero_mod" placeholder="Genero">
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" name="imagen_mod" placeholder="URL de imagen">
+                                    </div>
+                                    <div class="input-group mt-3">
+                                        <input type="text" class="form-control" name="descripcion_mod" placeholder="Descricpción">
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Datos de almacén</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="direccion_mod" placeholder="Dirección">
-                                        <input type="text" class="form-control" name="correo_mod" placeholder="Correo">
-                                        <input type="text" class="form-control" name="telefono_mod" placeholder="Teléfono">
+                                        <input type="text" class="form-control" name="existencia_mod" placeholder="Existencia">
+                                        <input type="text" class="form-control" name="ubicacion_mod" placeholder="Ubicación">
                                     </div>
-                                    <label class="font-weight-bold mt-2">Credenciales</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="tipo_mod" placeholder="Tipo usuario">
-                                        <input type="text" class="form-control" name="pass_mod" placeholder="Contraseña">
-                                        <input type="text" class="form-control" name="repPass_mod" placeholder="Repetir contraseña">
-                                    </div>
-
                                     <label class="font-weight-bold mt-2">Detalles de creación</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="fecAlta_mod" placeholder="Fecha alta">
-                                        <input type="text" class="form-control" name="usrAlta_mod" placeholder="Usuario alta">
+                                        <input type="text" class="form-control" name="fecAlta_mod" placeholder="Fecha alta" disabled="disabled">
+                                        <input type="text" class="form-control" name="usrAlta_mod" placeholder="Usuario alta" disabled="disabled">
                                     </div>
                                     <label class="font-weight-bold mt-2">Detalles de modificación</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="fecMod_mod" placeholder="Fecha de modificación">
-                                        <input type="text" class="form-control" name="usrMod_mod" placeholder="Usuario de modificación">
+                                        <input type="text" class="form-control" name="fecMod_mod" placeholder="Fecha de modificación" disabled="disabled">
+                                        <input type="text" class="form-control" name="usrMod_mod" placeholder="Usuario de modificación" disabled="disabled">
                                     </div>
-                                    <% request.setAttribute("tipo_operacion", 1);%>
+
                                 </div>
                             </div>
                         </div>
@@ -215,7 +216,7 @@
                     <div class="modal-footer">
                         <div class="row px-3">
                             <div class="col text-right mt-3">
-                                <input class="btn btn-success" type="submit" value="Modificar" name="tipo_op"></input>
+                                <input class="btn btn-success" type="submit" value="Guardar" name="tipo_op"></input>
                             </div>
                         </div>	
                     </div>
@@ -223,6 +224,7 @@
             </div>
         </div>
         <!--Fin de modal modificar-->
+
         <!--Inicio de modal de eliminar-->
         <div class="modal" id="modal-usuario-eli" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -238,6 +240,9 @@
                             <div class="col">
                                 <div class="form-row">
                                     <p>¿Esta seguro que desea eliminar el registro?</p>
+                                    <p id="iddisco"></p>
+                                    <p id="titulo"></p>
+                                    <p id="artista"></p>
                                 </div>
                             </div>
                         </div>
@@ -252,9 +257,40 @@
                 </form>
             </div>
         </div>
-        
-        
-    
+        <script language="JavaScript" type="text/javascript">
+
+            console.log("id sdsadsadsda");
+
+            $(document).ready(function () {
+                $(document).on('click', '.eliminar', function () {
+                    var id = $(this).val();
+                    console.log('id' + id);
+                    var iddisco = $('#id' + id).text();
+                    var titulo = $('#titulo' + id).text();
+                    var artista = $('#artista' + id).text();
+
+                    $('#modal-usuario-eli').modal('show');
+                    $('#iddisco').val(iddisco);
+                    $('#titulo').val(titulo);
+                    $('#artista').val(artista);
+                });
+            });
+
+            var boton = document.getElementById("eliminar");
+            boton.onclick = function (e) {
+                var id = $(this).val();
+                console.log("preasdsadsa");
+                var iddisco = $('#id' + id).text();
+                var titulo = $('#titulo' + id).text();
+                var artista = $('#artista' + id).text();
+
+                $('#modal-usuario-eli').modal('show');
+                $('#iddisco').val(iddisco);
+                $('#titulo').val(titulo);
+                $('#artista').val(artista);
+            }
+        </script>
+
         <!--Fin de modal de eliminar-->
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>

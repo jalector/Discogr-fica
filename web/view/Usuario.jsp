@@ -4,6 +4,7 @@
     Author     : Saul
 --%>
 
+<%@page import="controller.ConsultasUsuario"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="javax.persistence.Persistence"%>
@@ -67,96 +68,28 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                            String UsuarioFindAll ="SELECT * FROM Usuario";
-                                            EntityManagerFactory emf;
-                                            EntityManager em;
-                                            emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                            em = emf.createEntityManager();
-                                            Query consulta = em.createNativeQuery(UsuarioFindAll);
-                                            List<Object[]> listaUsuario = consulta.getResultList();
-                                            
-                                            for (Object []usr : listaUsuario) {
+                                            EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+                                            EntityManager em = emf.createEntityManager();
+                                            ConsultasUsuario conUsuario = new ConsultasUsuario(emf);
+                                            List<Object[]> listaUsuario = conUsuario.usuarios();
+
+                                            for (Object[] usr : listaUsuario) {
                                                 out.println("<tr>");
-                                                out.println("<td>"+String.valueOf(usr[0])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[1])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[2])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[3])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[4])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[5])+"</td>");
-                                                out.println("<td>"+String.valueOf(usr[6])+"</td>");
-                                                out.println("<td class='text-center'>" +
-                                                    "<button class='btn btn-info btn-sm mr-1' data-toggle='modal' data-target='#modal-usuario-mod'>Detalle</button>" +
-                                                    "<button class='btn btn-danger btn-sm' data-toggle='modal' data-target='#modal-usuario-eli'>Eliminar</button>" +
-                                                "</td>");
+                                                out.println("<td>" + String.valueOf(usr[0]) + "</td>");
+                                                out.println("<td>" + String.valueOf(usr[1]) + "</td>");
+                                                out.println("<td>" + String.valueOf(usr[2]) + "</td>");
+                                                out.println("<td>" + String.valueOf(usr[3]) + "</td>");
+                                                out.println("<td>" + String.valueOf(usr[4]) + "</td>");
+                                                out.println("<td>" + String.valueOf(usr[5]) + "</td>");
+                                                out.println("<td>" + String.valueOf(usr[6]) + "</td>");
+                                                out.println("<td class='text-center'>"
+                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaUsuario.jsp?id=" + String.valueOf(usr[0]) + "'>Modificar</a>"
+                                                        + "<a class='btn btn-danger btn-sm mr-1' href='../EliminarUsuario?id=" + String.valueOf(usr[0]) + "'>Eliminar</a>"
+                                                        + "</td>");
                                                 out.println("</tr>");
-                                                
+
                                             }
                                         %>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-targer="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Juda</td>
-                                            <td>Vallejo</td>
-                                            <td>4775012321</td>
-                                            <td>La joyita #233</td>
-                                            <td>juda@mail.com</td>
-                                            <td>El rolas</td>
-                                            <td class="text-center">
-                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-usuario-mod">Detalle</button>
-                                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-usuario-eli">Eliminar</button>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -197,7 +130,10 @@
                                     </div>
                                     <label class="font-weight-bold mt-2">Credenciales</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="tipo" placeholder="Tipo usuario">
+                                        <select class="custom-select" name="tipo">
+                                            <option value="Empleado" selected>Empleado</option>
+                                            <option value="Administrador">Administrador</option>
+                                        </select>
                                         <input type="text" class="form-control" name="pass" placeholder="Contraseña">
                                         <input type="text" class="form-control" name="repPass" placeholder="Repetir contraseña">
                                     </div>
@@ -316,9 +252,9 @@
                 </form>
             </div>
         </div>
-        
-        
-    
+
+
+
         <!--Fin de modal de eliminar-->
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>

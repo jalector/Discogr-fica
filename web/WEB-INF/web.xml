@@ -24,6 +24,26 @@
         <servlet-name>EliminarUsuario</servlet-name>
         <servlet-class>controller.EliminarUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarDisco</servlet-name>
+        <servlet-class>controller.ModificarDisco</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarDisco</servlet-name>
+        <servlet-class>controller.EliminarDisco</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarCliente</servlet-name>
+        <servlet-class>controller.ModificarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertarCliente</servlet-name>
+        <servlet-class>controller.InsertarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarCliente</servlet-name>
+        <servlet-class>controller.EliminarCliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletPrueba</servlet-name>
         <url-pattern>/ServletPrueba</url-pattern>
@@ -47,6 +67,26 @@
     <servlet-mapping>
         <servlet-name>EliminarUsuario</servlet-name>
         <url-pattern>/EliminarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarDisco</servlet-name>
+        <url-pattern>/ModificarDisco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarDisco</servlet-name>
+        <url-pattern>/EliminarDisco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarCliente</servlet-name>
+        <url-pattern>/ModificarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertarCliente</servlet-name>
+        <url-pattern>/InsertarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarCliente</servlet-name>
+        <url-pattern>/EliminarCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -12,19 +12,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Usuario;
+import model.Disco;
 
-public class ModificarUsuario extends HttpServlet {
+/**
+ *
+ * @author Saul
+ */
+public class ModificarDisco extends HttpServlet {
 
     EntityManagerFactory emf;
     EntityManager em;
-    Usuario usuario;
+    Disco disco;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -32,30 +35,32 @@ public class ModificarUsuario extends HttpServlet {
         DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
         emf = Persistence.createEntityManagerFactory("DiscograficaPU");
         em = emf.createEntityManager();
-        usuario = new Usuario();
-        
+        disco = new Disco();
         try {
-                int idUsuario = Integer.parseInt(request.getParameter("id_mod"));
-                usuario = em.find(Usuario.class,idUsuario);
-                usuario.setNombre(request.getParameter("nombre_mod"));
-                usuario.setApellidos(request.getParameter("apellido_mod"));
-                usuario.setDireccion(request.getParameter("direccion_mod"));
-                usuario.setCorreo(request.getParameter("correo_mod"));
-                usuario.setTelefono(request.getParameter("telefono_mod"));
-                usuario.setTipoUsuario(request.getParameter("tipo_mod"));
-                usuario.setContrasenia(request.getParameter("repPass_mod"));
-                usuario.setIdUsuarioModificacion(2);
-                usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
-
-                em.getTransaction().begin();
-                em.persist(usuario);
-                em.flush();
-                em.getTransaction().commit();
-                response.sendRedirect("view/Usuario.jsp");
-            } catch (Exception e) {
-                e.printStackTrace();
-                //response.sendRedirect("view/Usuario.jsp");
-            }
+            int idDisco = Integer.parseInt(request.getParameter("id_mod"));
+            disco = em.find(Disco.class,idDisco);
+            disco.setTitulo(request.getParameter("titulo_mod"));
+            disco.setArtista(request.getParameter("artista_mod"));
+            disco.setPrecio(Float.parseFloat(request.getParameter("precio_mod")));
+            disco.setImagen(request.getParameter("imagen_mod"));
+            disco.setExistencia(Integer.parseInt(request.getParameter("existencia_mod")));
+            disco.setGenero(request.getParameter("genero_mod"));
+            disco.setUbicacion(request.getParameter("ubicacion_mod"));
+            disco.setDescripcion(request.getParameter("descripcion_mod"));
+            disco.setIdUsuarioModificacion(1);
+            disco.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
+            
+            em.getTransaction().begin();
+            em.persist(disco);
+            em.flush();
+            em.getTransaction().commit();
+            response.sendRedirect("view/Producto.jsp");
+        } catch (Exception e) {
+            e.printStackTrace();
+            //response.sendRedirect("view/Usuario.jsp");
+        }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,6 +76,8 @@ public class ModificarUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+            
     }
 
     /**
@@ -85,6 +92,7 @@ public class ModificarUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**

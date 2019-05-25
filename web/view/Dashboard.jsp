@@ -50,7 +50,7 @@
                 int contRow = 0;
                 for (Object []disco : listaDisco) {
 
-                    out.println("<div class='col-3'>");
+                    out.println("<div class='col-3 mb-3'>");
                     out.println("<div class='card'>");
                     out.println("<img src='"+String.valueOf(disco[2])+"' class='card-img-top'>");
                     out.println("<div class='card-body'>");
