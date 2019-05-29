@@ -43,6 +43,7 @@
                 </div>
                 <div class="row col-10 mt-3">
                 <% 
+
                 ConsultasDisco conDisco = new ConsultasDisco();
                 List<Object[]> listaDisco = conDisco.infoGralDisco();
                 int contRow = 0;
@@ -63,6 +64,7 @@
                     contRow++;
 
                 }
+
                 %>
                 </div>
                 <!--

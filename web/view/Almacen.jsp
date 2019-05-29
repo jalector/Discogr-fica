@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="controller.AlmacenController"%>
+<%@page import="model.Almacen"%>
+<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -59,61 +62,28 @@
                                         </tr>					
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
+                                        <%
+                                            AlmacenController ac = new AlmacenController();
+                                            
+                                            List <Almacen> movimientos = ac.getRegistrosAlmacen();
+                                            for (Almacen movimiento : movimientos) {
+
+                                                out.println("<tr>");
+                                                    out.println("<td>"+movimiento.getId()+"</td>");
+                                                    out.println("<td>"+movimiento.getTipoMovimiento()+"</td>");
+                                                    out.println("<td>"+movimiento.getFechaMovimiento()+"</td>");
+                                                    out.println("<td>"+movimiento.getDescripcion()+"</td>");
+                                                    out.println("<td>"+movimiento.getIdCliente().getNombre()+"</td>");
+                                                    out.println("<td>"+movimiento.getIdUsuario  ().getNombre()+"</td>");
+                                                    
+                                                    out.println("<td>");
+                                                    out.println("<a href='AlmacenDetalle.jsp?movimoento="+ movimiento.getId() +"' class='btn btn-sm btn-info'>Detalle</a>");
+                                                    
+                                                    out.println("</td>");
+                                                            
+                                                out.println("</tr>");
+                                            }
+                                        %>                                        
                                     </tbody>
                                 </table>
                             </div>
