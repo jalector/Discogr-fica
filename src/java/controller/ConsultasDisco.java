@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import model.Disco;
 
 /**
  *
@@ -33,18 +34,19 @@ public class ConsultasDisco implements Serializable{
     }
     
     public List<Object[]> infoGralDisco(){
-        String Discos = "SELECT id, titulo, imagen, descripcion FROM Disco";
+        String Discos = "SELECT id, titulo, imagen, descripcion, precio FROM Disco";
         Query consulta = em.createNativeQuery(Discos);
         List<Object[]> listaDisco = consulta.getResultList();
         return listaDisco;
     }
     
     public List<Object[]> ontenerUnDisco(int id){
-        String Discos = "SELECT id, titulo, artista, imagen, genero, descripcion FROM Disco where id="+id;
+        String Discos = "SELECT id, titulo, artista, imagen, genero, descripcion, precio, existencia FROM Disco where id="+id;
         Query consulta = em.createNativeQuery(Discos);
         List<Object[]> listaDisco = consulta.getResultList();
         return listaDisco;
     }
+    
     
     public List<Object[]> ontenerDetallesDisco(int id){
         String Discos = "SELECT * FROM Disco where id="+id;

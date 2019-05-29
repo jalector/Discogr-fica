@@ -4,8 +4,27 @@
     Author     : Saul
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="model.Disco"%>
+<%@page import="model.Carrito"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+     session= request.getSession(true);
+    //int usuario = Integer.parseInt(session.getAttribute("idUsuario").toString());        
+    int usuario = 1; 
+   ArrayList <Carrito> cesta;
+   Carrito objCarrito = new Carrito();
+     cesta = (ArrayList <Carrito>)  session.getAttribute("Cesta"+Integer.toString(usuario));                    
+     float subtotal;
+     float total= 0;
+     int idCarrito;
+     String titulo;
+     int cantidad;
+     float precio;
+     int i=0;
+%>
 <html>
     <head>
         <title>Carrito</title>
@@ -43,8 +62,11 @@
                                 <h3>Carrito de compras</h3>
                                 <p>Realiza la compra de tus éxitos musicales en la mejor Discográfica del país.</p>
                             </div>
-                        </div>
-                        <div class="row">
+                        </div>                                                          
+                        <%
+                        if(cesta!=null){
+                            %>
+                         <div class="row">
                             <div class="col">
                                 <table class="table table-hover table-sm table-bordered">
                                     <theader>
@@ -57,69 +79,37 @@
                                             <th></th>
                                         </tr>
                                     </theader>
-                                    <tbody>
-                                        <tr class="text-center">
-                                            <td>1</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
+                                    <tbody>             
+                                            <%
+                                        Iterator<Carrito> it = cesta.iterator();                                        
+                                                while(it.hasNext()){
+                                                 objCarrito = (Carrito) it.next();
+                                                 idCarrito = objCarrito.getIdDisco();
+                                                 titulo = objCarrito.getTitulo();
+                                                 cantidad = objCarrito.getExistencia();
+                                                 precio = objCarrito.getPrecio();
+                                                 subtotal = precio * cantidad;
+                                                 total = total + subtotal;
+                                                 i++;
+                                                 %>
+                                             <tr class="text-center">
+                                            <td><%=i%></td>
+                                            <td><%=titulo%></td>
+                                            <td><%=cantidad%></td>
+                                            <td><%=precio%>$</td>
+                                            <td><%=subtotal%>$</td>
                                             <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
+                                        </tr>           
+
+                                               <%                                           
+                                              }//fin del while
+                                                %>
                                         <tr class="text-center">
-                                            <td>2</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>3</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>4</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>5</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>6</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>7</td>
-                                            <td>Of The wall</td>
-                                            <td>2</td>
-                                            <td>70$</td>
-                                            <td>140$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td>8</td>
+                                            <td><%=++i%></td>
                                             <td colspan="3">Total</td>
-                                            <td>840$</td>
+                                            <td><%=total%>$</td>
                                             <td><button class="btn btn-danger btn-sm">Cancelar compra</button></td>
-                                        </tr>
+                                        </tr>                                             
                                     </tbody>
                                 </table>
                             </div>
@@ -129,6 +119,19 @@
                                 <button class="btn btn-primary">Comprar</button>
                             </div>
                         </div>
+                    <% // fin del if                                               
+                    }else{
+                    %>
+                    <div class="row">
+                            <div class="col">
+                                <br><br><br><br>
+                                <h1>No se ha agregado nada al carrito</h1>                                
+                            </div>
+                        </div>
+                    
+                    <%
+                    }                      
+                   %>                                            
                     </div>
                 </div>
             </div>
