@@ -38,17 +38,8 @@ public class ServletPrueba extends HttpServlet {
                     //request.getRequestDispatcher("/view/loginCliente.jsp").forward(request, response);
                     break;
                 case "Incorrecto":
-                    /*out.println("<script type=\"text/javascript\">");
-                    out.println("alert('Inicio de Sesión Incorrecto');");
-                    out.println("location='index.html';");
-                    out.println("</script>");*/
-                    //response.sendRedirect("index.html");
                     out.println("<meta http-equiv='refresh' content='3;URL=index.html'>");//redirects after 3 seconds
                     out.println("<h1 style='color:red; text-align:center;'>Inicio de Sesión Incorrecto</h1>");
-                    /*out.println("<script type=\"text/javascript\">");
-                    out.println("alert('User or password incorrect');");
-                    out.println("</script>");
-                    response.sendRedirect("index.html");*/
                     break;
             }
         }
