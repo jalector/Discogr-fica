@@ -49,11 +49,8 @@
 
                             <%
                                 //Código para obtener toda la información del disco
-
-                                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                EntityManager em = emf.createEntityManager();
-                                ConsultasUsuario conUsuario = new ConsultasUsuario(emf);
-                                List<Object[]> usr = conUsuario.ontenerDetallesUsuario(Integer.parseInt(request.getParameter("id")));
+                                ConsultasUsuario conUsuario = new ConsultasUsuario();
+                                List<Object[]> usr = conUsuario.obtenerDetallesUsuario(Integer.parseInt(request.getParameter("id")));
                                 String id = "";
                                 String nombre = "";
                                 String apellidos = "";

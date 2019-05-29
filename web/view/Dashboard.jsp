@@ -43,9 +43,7 @@
                 </div>
                 <div class="row col-10 mt-3">
                 <% 
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                EntityManager em = emf.createEntityManager();
-                ConsultasDisco conDisco = new ConsultasDisco(emf);
+                ConsultasDisco conDisco = new ConsultasDisco();
                 List<Object[]> listaDisco = conDisco.infoGralDisco();
                 int contRow = 0;
                 for (Object []disco : listaDisco) {

@@ -48,6 +48,28 @@
                         <div class="row">
                             <div class="col">
                                 <h3>Usuarios</h3>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <form class="form-inline col-7 offset-5" action="../BuscarUsuario" method="GET">
+                                <input type="text" class="form-control col-8 mx-4" id="nombre" name="nombre" placeholder="Nombre" value="<%
+                                    String nombre = request.getParameter("nombre");
+
+                                    if (nombre == null) {
+                                        out.println("");
+                                    } else {
+                                        out.println(request.getParameter("nombre"));
+                                    }
+
+                                       %>">
+                                <button type="submit" class="btn btn-success col-3">Buscar</button>
+                            </form>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
                                 <p>Para ver más detalles acerca del usuario pulsa en el botón de ver detalle</p>
                             </div>
                         </div>
@@ -67,11 +89,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%
-                                            EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                            EntityManager em = emf.createEntityManager();
-                                            ConsultasUsuario conUsuario = new ConsultasUsuario(emf);
-                                            List<Object[]> listaUsuario = conUsuario.usuarios();
+                                        <%  
+                                            ConsultasUsuario conUsuario = new ConsultasUsuario();
+                                            List<Object[]> listaUsuario;
+                                            //Obtener el nombre de la URL
+                                            String registros = request.getParameter("nombre");
+                                            //Si no hay ningún nombre en la URL cargar todos los registros
+                                            if (registros == null) {
+                                                listaUsuario = conUsuario.usuarios();
+                                            } else {
+                                                listaUsuario = conUsuario.buscarUsuario(registros);
+                                            }
 
                                             for (Object[] usr : listaUsuario) {
                                                 out.println("<tr>");
