@@ -34,6 +34,7 @@
                         <a href="Carrito.jsp" class="list-group-item list-group-item-action">Carrito</a>
                         <a href="Usuario.jsp" class="list-group-item list-group-item-action">Usuarios</a>
                         <a href="Cliente.jsp" class="list-group-item list-group-item-action">Clientes</a>
+                        <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
                     <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>

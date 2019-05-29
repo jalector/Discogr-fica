@@ -48,9 +48,7 @@
                                 /***Nota importante: Si se necesita el id del disco para añadirlo al carrillo usar la variable "id" **/
                                 //Código para obtener toda la información del disco
                                 
-                                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                EntityManager em = emf.createEntityManager();
-                                ConsultasDisco conDisco = new ConsultasDisco(emf);
+                                ConsultasDisco conDisco = new ConsultasDisco();
                                 List<Object[]> dis = conDisco.ontenerUnDisco(Integer.parseInt(request.getParameter("id")));
                                 String id = "";
                                 String titulo = "";
@@ -71,7 +69,7 @@
                                 <div class="row">
                                     <div class="col-12">
 
-                                        <img src="<%=imagen%>" width="100%" style="border-radius:15px" alt="Imagen de disco">
+                                        <img src="../resources/images/<%=imagen%>" width="100%" style="border-radius:15px" alt="Imagen de disco">
                                     </div>
                                     <div class="col-12 mt-3">
                                         <div class="row">

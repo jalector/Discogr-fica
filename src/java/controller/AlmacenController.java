@@ -74,4 +74,43 @@ public class AlmacenController implements Serializable {
         
         return movimientos;
     }
+    
+    
+    public Almacen getMovimientoAlmacen(int idMovimiento){
+        String query = "select a.id, a.tipo_movimiento, a.fecha_movimiento, a.descripcion, cliente.nombre, usuario.nombre " +
+                "from Almacen a " +
+                "join Usuario cliente " +
+                "on cliente.id = id_cliente " +
+                "join Usuario usuario " +
+                "on usuario.id = id_usuario"
+                + "where a.id = " + idMovimiento;
+        this.openEntityManager();
+        
+        Query consulta = em.createNativeQuery(query);
+        
+        List<Object[]> rawMovimientos = consulta.getResultList();
+        
+        
+        Almacen movimiento = new Almacen();
+        for (Object[] rawMovimiento : rawMovimientos) {
+
+            movimiento.setId(Integer.parseInt(String.valueOf(rawMovimiento[0])));
+            movimiento.setTipoMovimiento(String.valueOf(rawMovimiento[1]));
+            movimiento.setFechaMovimiento(String.valueOf(rawMovimiento[2]));
+            movimiento.setDescripcion(String.valueOf(rawMovimiento[3]));
+            
+            Usuario cliente = new Usuario();
+            cliente.setNombre(String.valueOf(rawMovimiento[4]));            
+            movimiento.setIdCliente(cliente);
+            
+            Usuario usuario = new Usuario();
+            usuario.setNombre(String.valueOf(rawMovimiento[5]));            
+            movimiento.setIdUsuario(usuario);           
+            
+        }
+        
+        this.closeEntityManager();
+        
+        return movimiento;
+    }
 }

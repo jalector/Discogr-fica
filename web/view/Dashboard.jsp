@@ -43,16 +43,12 @@
                 </div>
                 <div class="row col-10 mt-3">
                 <% 
-                    EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");                    
-                    ConsultasDisco conDisco = new ConsultasDisco(emf);
-
+                    ConsultasDisco conDisco = new ConsultasDisco();
                     List<Object[]> listaDisco = conDisco.infoGralDisco();
-                    int contRow = 0;
                     for (Object []disco : listaDisco) {
-
                         out.println("<div class='col-3 mb-3'>");
                         out.println("<div class='card'>");
-                        out.println("<img src='"+String.valueOf(disco[2])+"' class='card-img-top'>");
+                        out.println("<img src='../resources/images/"+String.valueOf(disco[2])+"' class='card-img-top'>");
                         out.println("<div class='card-body'>");
                         out.println("<h5 class='card-title'>"+String.valueOf(disco[1])+"</h5>");
                         out.println("<p class='card-text'>"+String.valueOf(disco[3])+"</p>");
@@ -60,9 +56,6 @@
                         out.println("</div>");
                         out.println("</div>");
                         out.println("</div>");
-
-                        contRow++;
-
                     }
                 %>
                 </div>

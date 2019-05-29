@@ -44,6 +44,22 @@
         <servlet-name>EliminarCliente</servlet-name>
         <servlet-class>controller.EliminarCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>controller.CerrarSesion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscarUsuario</servlet-name>
+        <servlet-class>controller.BuscarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscarCliente</servlet-name>
+        <servlet-class>controller.BuscarCliente</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscarDisco</servlet-name>
+        <servlet-class>controller.BuscarDisco</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletPrueba</servlet-name>
         <url-pattern>/ServletPrueba</url-pattern>
@@ -87,6 +103,22 @@
     <servlet-mapping>
         <servlet-name>EliminarCliente</servlet-name>
         <url-pattern>/EliminarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscarUsuario</servlet-name>
+        <url-pattern>/BuscarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscarCliente</servlet-name>
+        <url-pattern>/BuscarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BuscarDisco</servlet-name>
+        <url-pattern>/BuscarDisco</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
