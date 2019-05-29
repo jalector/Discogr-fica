@@ -48,9 +48,7 @@
                                 /***Nota importante: Si se necesita el id del disco para añadirlo al carrillo usar la variable "id" **/
                                 //Código para obtener toda la información del disco
                                 
-                                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                EntityManager em = emf.createEntityManager();
-                                ConsultasDisco conDisco = new ConsultasDisco(emf);
+                                ConsultasDisco conDisco = new ConsultasDisco();
                                 List<Object[]> dis = conDisco.ontenerUnDisco(Integer.parseInt(request.getParameter("id")));
                                 String id = "";
                                 String titulo = "";

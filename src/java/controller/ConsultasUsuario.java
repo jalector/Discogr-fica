@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -17,26 +18,29 @@ import javax.persistence.Query;
  */
 public class ConsultasUsuario implements Serializable{
     
-    public ConsultasUsuario(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+    EntityManagerFactory emf;
+    EntityManager em;
+    public ConsultasUsuario() {
+        this.emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+        this.em = emf.createEntityManager();
     }
     
     public List<Object[]> usuarios(){
         String usuarios = "SELECT id, nombre, apellidos, telefono, direccion, correo, tipo_usuario FROM Usuario where tipo_usuario!='Cliente'";
-        EntityManager em = getEntityManager();
         Query consulta = em.createNativeQuery(usuarios);
         List<Object[]> listaUsuario = consulta.getResultList();
         return listaUsuario;
     }
     
-    public List<Object[]> ontenerDetallesUsuario(int id){
+    public List<Object[]> obtenerDetallesUsuario(int id){
         String Discos = "SELECT * FROM Usuario where id="+id +" and tipo_usuario!='Cliente'";
-        EntityManager em = getEntityManager();
+        Query consulta = em.createNativeQuery(Discos);
+        List<Object[]> listaDisco = consulta.getResultList();
+        return listaDisco;
+    }
+    
+    public List<Object[]> buscarUsuario(String nombre){
+        String Discos = "SELECT id, nombre, apellidos, telefono, direccion, correo, tipo_usuario FROM Usuario where nombre LIKE '%"+nombre +"%' and tipo_usuario!='Cliente'";
         Query consulta = em.createNativeQuery(Discos);
         List<Object[]> listaDisco = consulta.getResultList();
         return listaDisco;

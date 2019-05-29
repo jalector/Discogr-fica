@@ -51,9 +51,7 @@
                             <%
                                 //Código para obtener toda la información del cliente
 
-                                EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                EntityManager em = emf.createEntityManager();
-                                ConsultasCliente conCliente = new ConsultasCliente(emf);
+                                ConsultasCliente conCliente = new ConsultasCliente();
                                 List<Object[]> usr = conCliente.obtenerDetallesCliente(Integer.parseInt(request.getParameter("id")));
                                 String id = "";
                                 String nombre = "";

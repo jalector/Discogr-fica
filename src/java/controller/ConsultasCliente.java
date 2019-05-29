@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
@@ -17,18 +18,15 @@ import javax.persistence.Query;
  */
 public class ConsultasCliente implements Serializable{
     
-    public ConsultasCliente(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
-    private EntityManagerFactory emf = null;
-
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
+    EntityManagerFactory emf;
+    EntityManager em;
+    public ConsultasCliente() {
+        this.emf = Persistence.createEntityManagerFactory("DiscograficaPU");
+        this.em = emf.createEntityManager();
     }
     
     public List<Object[]> clientes(){
         String clientes = "SELECT id, nombre, apellidos, telefono, direccion, correo FROM Usuario where tipo_usuario='Cliente'";
-        EntityManager em = getEntityManager();
         Query consulta = em.createNativeQuery(clientes);
         List<Object[]> listaCliente = consulta.getResultList();
         return listaCliente;
@@ -36,10 +34,16 @@ public class ConsultasCliente implements Serializable{
     
     public List<Object[]> obtenerDetallesCliente(int id){
         String clientes = "SELECT id, nombre, apellidos, contrasenia, telefono, direccion, correo, id_usuario_alta, fecha_alta, id_usuario_modificacion, fecha_modificacion FROM Usuario where id="+id;
-        EntityManager em = getEntityManager();
         Query consulta = em.createNativeQuery(clientes);
         List<Object[]> listaCliente = consulta.getResultList();
         return listaCliente;
+    }
+    
+    public List<Object[]> buscarCliente(String nombre){
+        String Discos = "SELECT id, nombre, apellidos, telefono, direccion, correo FROM Usuario where nombre LIKE '%"+nombre +"%' and tipo_usuario='Cliente'";
+        Query consulta = em.createNativeQuery(Discos);
+        List<Object[]> listaDisco = consulta.getResultList();
+        return listaDisco;
     }
     
 }

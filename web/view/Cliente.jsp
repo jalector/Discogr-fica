@@ -46,6 +46,25 @@
                         <div class="row">
                             <div class="col">
                                 <h3>Clientes</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <form class="form-inline col-7 offset-5" action="../BuscarCliente" method="GET">
+                                <input type="text" class="form-control col-8 mx-4" id="nombre" name="nombre" placeholder="Nombre" value="<%
+                                    String nombre = request.getParameter("nombre");
+
+                                    if (nombre == null) {
+                                        out.println("");
+                                    } else {
+                                        out.println(request.getParameter("nombre"));
+                                    }
+
+                                       %>">
+                                <button type="submit" class="btn btn-success col-3">Buscar</button>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <p>Para ver más detalles acerca del cliente pulsa en el botón de ver detalle</p>
                             </div>
                         </div>
@@ -65,10 +84,16 @@
                                     </thead>
                                     <tbody>
                                         <%
-                                            EntityManagerFactory emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-                                            EntityManager em = emf.createEntityManager();
-                                            ConsultasCliente conCliente = new ConsultasCliente(emf);
-                                            List<Object[]> listaCliente = conCliente.clientes();
+                                            ConsultasCliente conCliente = new ConsultasCliente();
+                                            List<Object[]> listaCliente;
+                                            //Obtener el nombre de la URL
+                                            String registros = request.getParameter("nombre");
+                                            //Si no hay ningún nombre en la URL cargar todos los registros
+                                            if (registros == null) {
+                                                listaCliente = conCliente.clientes();
+                                            } else {
+                                                listaCliente = conCliente.buscarCliente(registros);
+                                            }
 
                                             for (Object[] cli : listaCliente) {
                                                 out.println("<tr>");
