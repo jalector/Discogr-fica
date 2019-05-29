@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Saul
+ * @author Rafa Paniagua
  */
 @Entity
 @Table(name = "disco")
@@ -35,11 +36,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Disco.findByTitulo", query = "SELECT d FROM Disco d WHERE d.titulo = :titulo")
     , @NamedQuery(name = "Disco.findByArtista", query = "SELECT d FROM Disco d WHERE d.artista = :artista")
     , @NamedQuery(name = "Disco.findByPrecio", query = "SELECT d FROM Disco d WHERE d.precio = :precio")
-    , @NamedQuery(name = "Disco.findByImagen", query = "SELECT d FROM Disco d WHERE d.imagen = :imagen")
     , @NamedQuery(name = "Disco.findByExistencia", query = "SELECT d FROM Disco d WHERE d.existencia = :existencia")
     , @NamedQuery(name = "Disco.findByGenero", query = "SELECT d FROM Disco d WHERE d.genero = :genero")
     , @NamedQuery(name = "Disco.findByUbicacion", query = "SELECT d FROM Disco d WHERE d.ubicacion = :ubicacion")
-    , @NamedQuery(name = "Disco.findByDescripcion", query = "SELECT d FROM Disco d WHERE d.descripcion = :descripcion")
     , @NamedQuery(name = "Disco.findByIdUsuarioAlta", query = "SELECT d FROM Disco d WHERE d.idUsuarioAlta = :idUsuarioAlta")
     , @NamedQuery(name = "Disco.findByFechaAlta", query = "SELECT d FROM Disco d WHERE d.fechaAlta = :fechaAlta")
     , @NamedQuery(name = "Disco.findByIdUsuarioModificacion", query = "SELECT d FROM Disco d WHERE d.idUsuarioModificacion = :idUsuarioModificacion")
@@ -66,7 +65,8 @@ public class Disco implements Serializable {
     @NotNull
     @Column(name = "precio")
     private float precio;
-    @Size(max = 100)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "imagen")
     private String imagen;
     @Column(name = "existencia")
@@ -77,7 +77,8 @@ public class Disco implements Serializable {
     @Size(max = 20)
     @Column(name = "ubicacion")
     private String ubicacion;
-    @Size(max = 50)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
     @Column(name = "id_usuario_alta")

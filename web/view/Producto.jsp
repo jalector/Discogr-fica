@@ -126,7 +126,7 @@
                                         <input type="text" class="form-control" name="genero" placeholder="Genero">
                                     </div>
                                     <div class="input-group mt-3">
-                                        <input type="text" class="form-control" name="imagen" placeholder="URL de imagen">
+                                        <input type="file" class="form-control" name="imagen" placeholder="URL de imagen">
                                     </div>
                                     <div class="input-group mt-3">
                                         <input type="text" class="form-control" name="descripcion" placeholder="Descricpción">

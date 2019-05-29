@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Saul
+ * @author Rafa Paniagua
  */
 @Entity
 @Table(name = "almacen")
@@ -35,8 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Almacen.findAll", query = "SELECT a FROM Almacen a")
     , @NamedQuery(name = "Almacen.findById", query = "SELECT a FROM Almacen a WHERE a.id = :id")
     , @NamedQuery(name = "Almacen.findByTipoMovimiento", query = "SELECT a FROM Almacen a WHERE a.tipoMovimiento = :tipoMovimiento")
-    , @NamedQuery(name = "Almacen.findByFechaMovimiento", query = "SELECT a FROM Almacen a WHERE a.fechaMovimiento = :fechaMovimiento")
-    , @NamedQuery(name = "Almacen.findByDescripcion", query = "SELECT a FROM Almacen a WHERE a.descripcion = :descripcion")})
+    , @NamedQuery(name = "Almacen.findByFechaMovimiento", query = "SELECT a FROM Almacen a WHERE a.fechaMovimiento = :fechaMovimiento")})
 public class Almacen implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,7 +53,8 @@ public class Almacen implements Serializable {
     @Size(max = 10)
     @Column(name = "fecha_movimiento")
     private String fechaMovimiento;
-    @Size(max = 100)
+    @Lob
+    @Size(max = 65535)
     @Column(name = "descripcion")
     private String descripcion;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")

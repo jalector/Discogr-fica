@@ -71,7 +71,7 @@
                                 <div class="row">
                                     <div class="col-12">
 
-                                        <img src="<%=imagen%>" width="100%" style="border-radius:15px" alt="Imagen de disco">
+                                        <img src="../resources/images/<%=imagen%>" width="100%" style="border-radius:15px" alt="Imagen de disco">
                                     </div>
                                     <div class="col-12 mt-3">
                                         <div class="row">
