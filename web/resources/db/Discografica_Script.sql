@@ -71,5 +71,29 @@ CREATE TABLE Detalle(
 	foreign key (id_movimiento) references Almacen(id) on delete cascade on update cascade
 );
 
+
+insert into Usuario values(null,'Luis Saul', 'Ornelas Pérez','1234','4773548504','barcenas 602','saulop97@outlook.com','Administrador',1,'2019-05-24',1,'2019-05-24');
+insert into Usuario values(null,'Petronilo', 'Sanchez','1234','4773548504','Madrid','petr@outlook.com','Cliente',1,'2019-05-24',1,'2019-05-24');
+
+insert into Disco values(null,'Revival','Eminem',400,'https://i1.cdn.hhv.de/catalog/475x475/00588/588736.jpg',
+                         10,'Hip hop','Bla bla','Disco chidote',1,'2019-05-10',1,'2019-05-24');
+
+insert into Disco values(null,'Revival 2','Patito',400,'https://i1.cdn.hhv.de/catalog/475x475/00588/588736.jpg',
+                         10,'Hip hop','Bla bla','Disco chidote',1,'2019-05-10',1,'2019-05-24');
+
+insert into Disco values(null,'Revival 3','Zaratrustra',400,'https://i1.cdn.hhv.de/catalog/475x475/00588/588736.jpg',
+                         10,'Hip hop','Bla bla','Disco chidote',1,'2019-05-10',1,'2019-05-24');
+
+#Registro de almacen
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos chidos', 1, 2)insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos chidos', 1, 2)
+    insert into detalle values 
+	(null, 3, 1, 1),
+	(null, 1, 2, 1), 
+        (null, 2, 3, 1);
+
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos de Selena', 1, 2)
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos de Carlos', 1, 2)
+
+
 #select * from Usuario;
 #select * from Disco;

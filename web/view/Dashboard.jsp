@@ -53,6 +53,7 @@
                 </div>
                 <div class="row col-10 mt-3">
                 <% 
+
                 ConsultasDisco conDisco = new ConsultasDisco();
                 List<Object[]> listaDisco = conDisco.infoGralDisco();
                 int contRow = 0;
@@ -64,6 +65,7 @@
                     out.println("<div class='card-body'>");
                     out.println("<h5 class='card-title'>"+String.valueOf(disco[1])+"</h5>");
                     out.println("<p class='card-text'>"+String.valueOf(disco[3])+"</p>");
+                    out.println("<p class='card-text'>$"+String.valueOf(disco[4])+"</p>");
                     out.println("<a href='Disco.jsp?id="+String.valueOf(disco[0])+"' class='btn btn-primary'>Más detalles</a>");
                     out.println("</div>");
                     out.println("</div>");
@@ -72,6 +74,7 @@
                     contRow++;
 
                 }
+
                 %>
                 </div>
                 <!--

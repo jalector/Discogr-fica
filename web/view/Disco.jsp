@@ -66,6 +66,8 @@
                                 String imagen = "";
                                 String genero = "";
                                 String descripcion = "";
+                                String precio ="";
+                                String cantidad ="";
                                 for (Object[] disco : dis) {
                                     id = String.valueOf(disco[0]);
                                     titulo = String.valueOf(disco[1]);
@@ -73,6 +75,9 @@
                                     imagen = String.valueOf(disco[3]);
                                     genero = String.valueOf(disco[4]);
                                     descripcion = String.valueOf(disco[5]);
+                                    precio = String.valueOf(disco[6]);
+                                    cantidad = String.valueOf(disco[7]);
+                                    
                                 }
                             %>
                             <div class="col-4">
@@ -85,19 +90,37 @@
                                         if(!session.getAttribute("tipoUsuario").equals("Cliente")){
                                     %>
                                     <div class="col-12 mt-3">
-                                        <div class="row">
+                                        <%                                        
+                                        if (Integer.parseInt(cantidad)!=0){
+                                        %>
+                                        <form action="../agregarAlCarrito" method="post">  
+                                         <div class="row">
                                             <div class="col-6">
-                                                <button type="button" class="btn btn-success col-12">Success</button>
+                                                <input type="hidden" name="idDisco" value="<%=id%>"> 
+                                                <button type="submit" class="btn btn-success col-12">Success</button>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon3">Cantidad</span>
                                                     </div>
-                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                    <input type="text" name="cantidad" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                 </div>
                                             </div>
                                         </div>
+                                        </form>
+                                        
+                                        <%   
+                                        }else{
+                                         %>
+                                         <div class="row">
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-danger col-12" disabled>AGOTADO</button>
+                                            </div>                                           
+                                        </div>
+                                        
+                                        <%    
+                                        }%>                                   
                                     </div>
                                     <%
                                         }
@@ -108,6 +131,8 @@
                             <div class="col-7">
                                 <h1 style="display:inline"><%= titulo %></h1><span> (<%= genero %>)</span><br>
                                 <h4 class="text-muted"><%= artista%></h4>
+                                <h4 class="mt-5">$<%= precio%></h4>
+                                <!--<h4 class="mt-5"><%= cantidad %></h4>-->
                                 <p class="mt-5"><%=descripcion%></p>
                             </div>
                         </div>
