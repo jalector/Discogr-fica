@@ -23,11 +23,11 @@ public class ServletPrueba extends HttpServlet {
             //out.println("Hola " + usuario + " con contraseña " + password);
             //String tipoUsuario = validarDatos.validar(usuario, password);
             
-            /*ClienteLogin cliente = new ClienteLogin();
+            ClienteLogin cliente = new ClienteLogin();
             String datos = cliente.getText(String.class, usuario, password);
-            cliente.close();*/
+            cliente.close();
             
-            String datos = "1,Luis Saul,Ornelas Perez,Administrador";
+            //String datos = "1,Luis Saul,Ornelas Perez,Administrador";
             
             if(datos.equals("Incorrecto")){
                 /*out.println("<meta http-equiv='refresh' content='3;URL=index.html'>");//redirects after 3 seconds

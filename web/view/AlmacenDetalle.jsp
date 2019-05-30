@@ -119,6 +119,9 @@
                                     </div>
                                 </div>
 
+                                <%
+                                    if(!session.getAttribute("tipoUsuario").equals("Cliente")){
+                                %>
                                 <div class="row">
                                     <div class="col">
                                         <form action="../Devolucion" method="GET">
@@ -128,6 +131,9 @@
                                         
                                     </div>
                                 </div>
+                                <%
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>

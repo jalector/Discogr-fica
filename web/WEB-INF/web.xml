@@ -137,10 +137,10 @@
         <url-pattern>/BuscarDisco</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>Devolucion</servlet-name>
         <url-pattern>/Devolucion</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>BuscarDiscoPrincipal</servlet-name>
         <url-pattern>/BuscarDiscoPrincipal</url-pattern>
     </servlet-mapping>
@@ -151,7 +151,6 @@
     <servlet-mapping>
         <servlet-name>InsertarSalida</servlet-name>
         <url-pattern>/InsertarSalida</url-pattern>
->>>>>>> 5a272c826b7690cdc49dfda31e480488e66c367d
     </servlet-mapping>
     <session-config>
         <session-timeout>
