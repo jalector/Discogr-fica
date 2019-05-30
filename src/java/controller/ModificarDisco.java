@@ -57,7 +57,6 @@ public class ModificarDisco extends HttpServlet {
             response.sendRedirect("view/Producto.jsp");
         } catch (Exception e) {
             e.printStackTrace();
-            //response.sendRedirect("view/Usuario.jsp");
         }
         
         

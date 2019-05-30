@@ -7,53 +7,37 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Usuario;
 
 /**
  *
  * @author Saul
  */
-public class EliminarUsuario extends HttpServlet {
+public class BuscarDiscoPrincipal extends HttpServlet {
 
-    EntityManagerFactory emf;
-    EntityManager em;
-    Usuario usuario;
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
     }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        emf = Persistence.createEntityManagerFactory("DiscograficaPU");
-        em = emf.createEntityManager();
-        usuario = new Usuario();
-
-        try {
-            int idUsuario = Integer.parseInt(request.getParameter("id"));
-            usuario = em.find(Usuario.class, idUsuario);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        em.getTransaction().begin();
-        try {
-            em.remove(usuario);
-            em.getTransaction().commit();
-            response.sendRedirect("view/Usuario.jsp");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String tituloDisco = request.getParameter("titulo");
+        response.sendRedirect("view/Dashboard.jsp?titulo="+tituloDisco);
     }
 
     @Override
@@ -62,11 +46,6 @@ public class EliminarUsuario extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
