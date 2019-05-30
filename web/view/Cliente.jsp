@@ -151,22 +151,8 @@
                                     </div>
                                     <label class="font-weight-bold mt-2">Credenciales</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="pass" placeholder="Contraseña">
-                                        <input type="text" class="form-control" name="repPass" placeholder="Repetir contraseña">
+                                        <input type="text" class="form-control" name="repPass" placeholder="Contraseña">
                                     </div>
-                                    <!--
-
-                                    <label class="font-weight-bold mt-2">Detalles de creación</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Fecha alta">
-                                        <input type="text" class="form-control" placeholder="Usuario alta">
-                                    </div>
-                                    <label class="font-weight-bold mt-2">Detalles de modificación</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Fecha de modificación">
-                                        <input type="text" class="form-control" placeholder="Usuario de modificación">
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                         </div>

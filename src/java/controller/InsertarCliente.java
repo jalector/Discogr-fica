@@ -36,12 +36,8 @@ public class InsertarCliente extends HttpServlet {
         DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd");
         emf = Persistence.createEntityManagerFactory("DiscograficaPU");
         em = emf.createEntityManager();
-        //tx = em.getTransaction();
-
-        //tipoOperacion = request.getParameter("tipo_op");
         usuario = new Usuario();
          try {
-                //System.out.println(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(ldt));
                 
                 usuario.setNombre(request.getParameter("nombre"));
                 usuario.setApellidos(request.getParameter("apellido"));
@@ -62,7 +58,6 @@ public class InsertarCliente extends HttpServlet {
                 response.sendRedirect("view/Cliente.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
-                //response.sendRedirect("view/Usuario.jsp");
             }
     }
 

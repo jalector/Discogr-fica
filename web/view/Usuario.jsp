@@ -165,18 +165,6 @@
                                         <input type="text" class="form-control" name="pass" placeholder="Contraseña">
                                         <input type="text" class="form-control" name="repPass" placeholder="Repetir contraseña">
                                     </div>
-                                    <!--
-                                    <label class="font-weight-bold mt-2">Detalles de creación</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="fecAlta_ins" placeholder="Fecha alta">
-                                        <input type="text" class="form-control" name="usrAlta_ins" placeholder="Usuario alta">
-                                    </div>
-                                    <label class="font-weight-bold mt-2">Detalles de modificación</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="fecMod_ins" placeholder="Fecha de modificación">
-                                        <input type="text" class="form-control" name="usrMod_ins" placeholder="Usuario de modificación">
-                                    </div>
-                                    -->
                                 </div>
                             </div>
                         </div>

@@ -94,7 +94,6 @@
                                     </div>
                                     <label class="font-weight-bold mt-2">Credenciales</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="pass_mod" placeholder="Contraseña" value="<%= contrasenia%>">
                                         <input type="text" class="form-control" name="repPass_mod" placeholder="Repetir contraseña" value="<%= contrasenia%>">
                                     </div>
                                     <label class="font-weight-bold mt-2">Detalles de creación</label>

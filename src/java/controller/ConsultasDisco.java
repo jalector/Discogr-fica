@@ -60,4 +60,10 @@ public class ConsultasDisco implements Serializable{
         return listaDisco;
     }
     
+    public List<Object[]> buscarDiscoDashboard(String titulo){
+        String Discos = "SELECT id, titulo, imagen, descripcion FROM Disco where titulo LIKE '%"+titulo +"%'";
+        Query consulta = em.createNativeQuery(Discos);
+        List<Object[]> listaDisco = consulta.getResultList();
+        return listaDisco;
+    }
 }

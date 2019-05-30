@@ -53,7 +53,6 @@ public class ModificarCliente extends HttpServlet {
                 response.sendRedirect("view/Cliente.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
-                //response.sendRedirect("view/Usuario.jsp");
             }
     }
 
