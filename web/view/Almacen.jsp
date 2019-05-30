@@ -77,21 +77,27 @@
                                             
                                             List <Almacen> movimientos = ac.getRegistrosAlmacen();
                                             for (Almacen movimiento : movimientos) {
+                                                
+                                                if((!session.getAttribute("tipoUsuario").equals("Cliente")) || 
+                                                        (session.getAttribute("tipoUsuario").equals("Cliente") && 
+                                                            (Integer.parseInt(session.getAttribute("idUsuario").toString()) == movimiento.getIdCliente().getId()))){
 
-                                                out.println("<tr>");
-                                                    out.println("<td>"+movimiento.getId()+"</td>");
-                                                    out.println("<td>"+movimiento.getTipoMovimiento()+"</td>");
-                                                    out.println("<td>"+movimiento.getFechaMovimiento()+"</td>");
-                                                    out.println("<td>"+movimiento.getDescripcion()+"</td>");
-                                                    out.println("<td>"+movimiento.getIdCliente().getNombre()+"</td>");
-                                                    out.println("<td>"+movimiento.getIdUsuario  ().getNombre()+"</td>");
-                                                    
-                                                    out.println("<td>");
-                                                    out.println("<a href='AlmacenDetalle.jsp?movimoento="+ movimiento.getId() +"' class='btn btn-sm btn-info'>Detalle</a>");
-                                                    
-                                                    out.println("</td>");
-                                                            
-                                                out.println("</tr>");
+                                                    out.println("<tr>");
+                                                        out.println("<td>"+movimiento.getId()+"</td>");
+                                                        out.println("<td>"+movimiento.getTipoMovimiento()+"</td>");
+                                                        out.println("<td>"+movimiento.getFechaMovimiento()+"</td>");
+                                                        out.println("<td>"+movimiento.getDescripcion()+"</td>");
+                                                        out.println("<td>"+movimiento.getIdCliente().getNombre()+"</td>");
+                                                        out.println("<td>"+movimiento.getIdUsuario  ().getNombre()+"</td>");
+
+                                                        out.println("<td>");
+                                                        out.println("<a href='AlmacenDetalle.jsp?movimoento="+ movimiento.getId() +"' class='btn btn-sm btn-info'>Detalle</a>");
+
+                                                        out.println("</td>");
+
+                                                    out.println("</tr>");
+
+                                                }
                                             }
                                         %>                                        
                                     </tbody>
