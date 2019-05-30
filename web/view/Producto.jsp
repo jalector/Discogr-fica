@@ -120,7 +120,7 @@
                                                 out.println("<td><span id='genero" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[5]) + "</span></td>");
                                                 out.println("<td><span id='ubicacion" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[6]) + "</span></td>");
                                                 out.println("<td class='text-center'>"
-                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaProducto.jsp?id=" + String.valueOf(disco[0]) + "'>Modificar</a>");
+                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaProducto.jsp?id=" + String.valueOf(disco[0]) + "'>Detalle</a>");
                                                 if(!session.getAttribute("tipoUsuario").equals("Cliente")){
                                                     out.println("<a class='btn btn-danger btn-sm mr-1' href='../EliminarDisco?id=" + String.valueOf(disco[0]) + "'>Eliminar</a>");
                                                 }

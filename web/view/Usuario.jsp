@@ -121,7 +121,7 @@
                                                 out.println("<td>" + String.valueOf(usr[5]) + "</td>");
                                                 out.println("<td>" + String.valueOf(usr[6]) + "</td>");
                                                 out.println("<td class='text-center'>"
-                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaUsuario.jsp?id=" + String.valueOf(usr[0]) + "'>Modificar</a>");
+                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaUsuario.jsp?id=" + String.valueOf(usr[0]) + "'>Detalle</a>");
                                                 if(!session.getAttribute("tipoUsuario").equals("Cliente") && !session.getAttribute("tipoUsuario").equals("Empleado")){
                                                     out.println("<a class='btn btn-danger btn-sm mr-1' href='../EliminarUsuario?id=" + String.valueOf(usr[0]) + "'>Eliminar</a>");
                                                 }
@@ -180,8 +180,7 @@
                                             <option value="Empleado" selected>Empleado</option>
                                             <option value="Administrador">Administrador</option>
                                         </select>
-                                        <input type="text" class="form-control" name="pass" placeholder="Contraseña">
-                                        <input type="text" class="form-control" name="repPass" placeholder="Repetir contraseña">
+                                        <input type="text" class="form-control" name="repPass" placeholder="Contraseña">
                                     </div>
                                 </div>
                             </div>

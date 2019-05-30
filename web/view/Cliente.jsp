@@ -114,7 +114,7 @@
                                                 out.println("<td>" + String.valueOf(cli[4]) + "</td>");
                                                 out.println("<td>" + String.valueOf(cli[5]) + "</td>");
                                                 out.println("<td class='text-center'>"
-                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaCliente.jsp?id=" + String.valueOf(cli[0]) + "'>Modificar</a>");
+                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaCliente.jsp?id=" + String.valueOf(cli[0]) + "'>Detalle</a>");
                                                 if(!session.getAttribute("tipoUsuario").equals("Cliente")){
                                                     out.println("<a class='btn btn-danger btn-sm mr-1' href='../EliminarCliente?id=" + String.valueOf(cli[0]) + "'>Eliminar</a>");
                                                 }
