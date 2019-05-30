@@ -5,6 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="controller.AlmacenController"%>
+<%@page import="model.Almacen"%>
+<%@page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,6 +39,18 @@
                     </div>
                     <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
+                <%
+                    String id = request.getParameter("movimiento");
+                    
+                    
+                    if(id == null){
+                        response.sendRedirect("Almacen.jsp");
+                    }
+                    
+                    AlmacenController ac = new AlmacenController();
+                    Almacen movimiento = ac.getMovimientoAlmacen(id);
+                    List<Object[]> detalles = ac.getDetalleAlmacen(id);
+                %>
                 <div class="col-10 mt-3">
                     <div class="container-fluid p-3">
                         <div class="row">
@@ -42,18 +58,24 @@
 
                                 <div class="row">
                                     <div class="col">
-                                        <h3>Detalle de almacén</h3>					
+                                        <h3>Detalle de almacén </h3>					
                                     </div>				
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col">
-                                        <p class="text-right">12, may, 2019</p>
+                                        <strong> Cliente </strong> <p><% out.println(movimiento.getIdCliente().getNombre()); %></p>
+                                    </div>
+                                    <div class="col">
+                                        <strong> Usuario </strong> <p><% out.println(movimiento.getIdUsuario().getNombre()); %></p>
+                                    </div>
+                                    <div class="col-2">
+                                        <p class="text-right"><% out.println(movimiento.getFechaMovimiento()); %></p>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col">
-                                        <table class="table table-sm table-hover">
+                                    <div class="col">                                        
+                                        <table class="table table-sm table-hover table-bordered ">
                                             <thead>
                                                 <tr>
                                                     <th>Id</th>
@@ -64,44 +86,38 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Disco: Off The Wall</td>
-                                                    <td>3</td>
-                                                    <td>70$</td>
-                                                    <td>210$</td>								
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Disco: Off The Wall</td>
-                                                    <td>3</td>
-                                                    <td>70$</td>
-                                                    <td>210$</td>								
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Disco: Off The Wall</td>
-                                                    <td>3</td>
-                                                    <td>70$</td>
-                                                    <td>210$</td>								
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Disco: Off The Wall</td>
-                                                    <td>3</td>
-                                                    <td>70$</td>
-                                                    <td>210$</td>								
-                                                </tr>
+                                                <% 
+                                                    float total = 0;
+                                                    for(Object[] detalle: detalles){
+                                                        out.println("<tr>");
+                                                            out.println("<td>"+String.valueOf(detalle[0])+"</td>");
+                                                            out.println("<td>"+String.valueOf(detalle[1])+"</td>");
+                                                            out.println("<td>"+String.valueOf(detalle[2])+"</td>");
+                                                            out.println("<td>"+String.valueOf(detalle[3])+"</td>");
+                                                            float prod = (Integer.parseInt(String.valueOf(detalle[1])) * Float.parseFloat(String.valueOf(detalle[3])));
+                                                            total += prod;
+                                                            out.println("<td>"+prod+"</td>");
+                                                        out.println("</tr>");
+                                                    }
+                                                %> 
                                                 <tr>
                                                     <td class="text-center" colspan="4">Total</td>
-                                                    <td>840$</td>								
+                                                    <td><% out.println(total); %></td>								
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
 
-
+                                <div class="row">
+                                    <div class="col">
+                                        <form action="../Devolucion" method="GET">
+                                            <input name="movimiento" value="<% out.println(id); %>" hidden>
+                                            <button class="btn btn-primary" type="submit">Realizar devolución</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

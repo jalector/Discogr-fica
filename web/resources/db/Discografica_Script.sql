@@ -1,3 +1,4 @@
+drop if exists discografica;
 CREATE DATABASE discografica;
 
 USE discografica;
@@ -56,6 +57,7 @@ CREATE TABLE Almacen(
 	descripcion		 text,
 	id_usuario 		 int,
 	id_cliente		 int,
+        devuelto boolean default false,
 	primary key (id),
 	foreign key (id_usuario) references Usuario(id) on delete cascade on update cascade,
 	foreign key (id_cliente) references Usuario(id) on delete cascade on update cascade
@@ -65,7 +67,7 @@ CREATE TABLE Detalle(
 	id 			  int not null auto_increment,
 	cantidad	  int not null,
 	id_disco	  int,
-	id_movimiento int,
+	id_movimiento int,        
 	primary key (id),
 	foreign key (id_disco) 		references Disco(id) on delete cascade on update cascade,
 	foreign key (id_movimiento) references Almacen(id) on delete cascade on update cascade
@@ -85,15 +87,25 @@ insert into Disco values(null,'Revival 3','Zaratrustra',400,'https://i1.cdn.hhv.
                          10,'Hip hop','Bla bla','Disco chidote',1,'2019-05-10',1,'2019-05-24');
 
 #Registro de almacen
-insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos chidos', 1, 2)insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos chidos', 1, 2)
-    insert into detalle values 
-	(null, 3, 1, 1),
-	(null, 1, 2, 1), 
-        (null, 2, 3, 1);
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos chidos', 1, 2, false);
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos chidos', 1, 2, false);
+insert into detalle values 
+    (null, 3, 1, 1),
+    (null, 1, 2, 1), 
+    (null, 2, 3, 1);
 
-insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos de Selena', 1, 2)
-insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos de Carlos', 1, 2)
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos de Selena', 1, 2, false);
+insert into almacen values(null, 'Salida', '2019-04-15', 'Venta de discos de Carlos', 1, 2, false);
 
 
 #select * from Usuario;
 #select * from Disco;
+
+
+create procedure devolucion(int i)
+begin
+    
+end
+
+
+delete from 

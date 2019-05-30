@@ -60,6 +60,10 @@
         <servlet-name>BuscarDisco</servlet-name>
         <servlet-class>controller.BuscarDisco</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Devolucion</servlet-name>
+        <servlet-class>controller.Devolucion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletPrueba</servlet-name>
         <url-pattern>/ServletPrueba</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>BuscarDisco</servlet-name>
         <url-pattern>/BuscarDisco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Devolucion</servlet-name>
+        <url-pattern>/Devolucion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
