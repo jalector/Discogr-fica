@@ -61,6 +61,10 @@
         <servlet-class>controller.BuscarDisco</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>BuscarDiscoPrincipal</servlet-name>
+        <servlet-class>controller.BuscarDiscoPrincipal</servlet-class>
+    </servlet>
+    <servlet> 
         <servlet-name>agregarAlCarrito</servlet-name>
         <servlet-class>controller.agregarAlCarrito</servlet-class>
     </servlet>
@@ -129,6 +133,10 @@
         <url-pattern>/BuscarDisco</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>BuscarDiscoPrincipal</servlet-name>
+        <url-pattern>/BuscarDiscoPrincipal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping> 
         <servlet-name>agregarAlCarrito</servlet-name>
         <url-pattern>/agregarAlCarrito</url-pattern>
     </servlet-mapping>

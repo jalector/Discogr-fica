@@ -23,13 +23,22 @@ public class ServletPrueba extends HttpServlet {
             //out.println("Hola " + usuario + " con contraseña " + password);
             //String tipoUsuario = validarDatos.validar(usuario, password);
             
-            ClienteLogin cliente = new ClienteLogin();
+            /*ClienteLogin cliente = new ClienteLogin();
             String datos = cliente.getText(String.class, usuario, password);
-            cliente.close();
+            cliente.close();*/
+            
+            String datos = "1,Luis Saul,Ornelas Perez,Administrador";
             
             if(datos.equals("Incorrecto")){
-                out.println("<meta http-equiv='refresh' content='3;URL=index.html'>");//redirects after 3 seconds
-                out.println("<h1 style='color:red; text-align:center;'>Inicio de Sesión Incorrecto</h1>");
+                /*out.println("<meta http-equiv='refresh' content='3;URL=index.html'>");//redirects after 3 seconds
+                out.println("<h1 style='color:red; text-align:center;'>Inicio de Sesión Incorrecto</h1>");*/
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Inicio de Sesión Incorrecto');");
+                out.println("setTimeout('redireccionar()', 1);"); //tiempo expresado en milisegundos
+                out.println("function redireccionar(){");
+                out.println("window.location='index.html';");
+                out.println("}");
+                out.println("</script>");
             }else{
                 String[] valores = datos.split(",");
                 
@@ -38,7 +47,9 @@ public class ServletPrueba extends HttpServlet {
                 httpSession.setAttribute("nombreUsuario", valores[1]+" "+valores[2]);
                 httpSession.setAttribute("tipoUsuario", valores[3]);
                 
-                String tipoUsuario = valores[3];
+                response.sendRedirect("view/Dashboard.jsp");
+                
+                /*String tipoUsuario = valores[3];
                 
                 switch (tipoUsuario) {
                     case "Administrador":
@@ -53,7 +64,7 @@ public class ServletPrueba extends HttpServlet {
                         //response.sendRedirect("view/loginCliente.jsp");
                         request.getRequestDispatcher("/view/IndexAdministrador.jsp").forward(request, response);
                         break;
-                }
+                }*/
             }
 
             //out.println(tipoUsuario);

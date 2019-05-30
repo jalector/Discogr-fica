@@ -33,14 +33,24 @@
         <link rel="stylesheet" href="../lib/bootstrap.min.css">
         <link rel="stylesheet" href="../lib/animate.css">
         <link rel="stylesheet" href="../css/util.css">
+        <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <%
+            String var = "";
+            
+            if(session.getAttribute("idUsuario") != null){
+                var = session.getAttribute("idUsuario").toString();
+            }
+            
+            if(!var.equals("")){
+        %>
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
                 Discográfica
             </a>
-            <a class="navbar-brand text-right" >Usuario</a>
+            <a class="navbar-brand text-right" ><%=session.getAttribute("nombreUsuario")%></a>
         </nav>
         <div class="container-fluid">
             <div class="row">
@@ -53,7 +63,7 @@
                         <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
+                    <a href="../CerrarSesion" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
                 <div class="col-10 mt-3">
                     <div class="container-fluid p-3">
@@ -194,6 +204,20 @@
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
+        <%
+            }else{
+        %>
+        <script type="text/javascript">
+            alert("Por favor inicia sesión para poder ingresar al sitio");
+            setTimeout("redireccionar()", 1); //tiempo expresado en milisegundos
+            
+            function redireccionar(){
+                window.location="../index.html";
+            }
+        </script>
+        <%
+            }
+        %>
     </body>
 </html>
 
