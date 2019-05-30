@@ -64,6 +64,10 @@
         <servlet-name>agregarAlCarrito</servlet-name>
         <servlet-class>controller.agregarAlCarrito</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertarSalida</servlet-name>
+        <servlet-class>controller.InsertarSalida</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletPrueba</servlet-name>
         <url-pattern>/ServletPrueba</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>agregarAlCarrito</servlet-name>
         <url-pattern>/agregarAlCarrito</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertarSalida</servlet-name>
+        <url-pattern>/InsertarSalida</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

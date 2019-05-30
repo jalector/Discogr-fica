@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="../lib/bootstrap.min.css">
         <link rel="stylesheet" href="../lib/animate.css">
         <link rel="stylesheet" href="../css/util.css">
+        
     </head>
     <body>
         <nav class="navbar navbar-dark bg-primary">
@@ -80,11 +81,11 @@
                                         <%                                        
                                         if (Integer.parseInt(cantidad)!=0){
                                         %>
-                                        <form action="../agregarAlCarrito" method="post">  
+                                        <form  name="myForm" action="../agregarAlCarrito" method="post" onsubmit="return validaCantidad(<%=cantidad%>)">  
                                          <div class="row">
                                             <div class="col-6">
                                                 <input type="hidden" name="idDisco" value="<%=id%>"> 
-                                                <button type="submit" class="btn btn-success col-12">Success</button>
+                                                <button type="submit"  class="btn btn-success col-12">Success</button>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group mb-3">
@@ -94,6 +95,7 @@
                                                     <input type="text" name="cantidad" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                 </div>
                                             </div>
+                                          
                                         </div>
                                         </form>
                                         
@@ -121,11 +123,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>                                          
             </div>
         </div>
+                            
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
+        <script src="../js/carrito.js"></script>
     </body>
 </html>

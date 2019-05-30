@@ -98,7 +98,7 @@
                                             <td><%=cantidad%></td>
                                             <td><%=precio%>$</td>
                                             <td><%=subtotal%>$</td>
-                                            <th><button class="btn btn-warning btn-sm">Eliminar</button></th>
+                                            <th><a href="../InsertarSalida?IdDisco=<%=idCarrito%>"><button type="submit" class="btn btn-warning btn-sm">Eliminar</button></a></th>
                                         </tr>           
 
                                                <%                                           
@@ -116,9 +116,10 @@
                         </div>
                         <div class="row">
                             <div class="col text-right px-3">
-                                <button class="btn btn-primary">Comprar</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-carrito">Comprar</button>
                             </div>
-                        </div>
+                        </div> 
+                        </div>                                            
                     <% // fin del if                                               
                     }else{
                     %>
@@ -134,6 +135,60 @@
                    %>                                            
                     </div>
                 </div>
+            </div>
+        </div>
+        
+         <!--Inicio de modal-->
+        <div class="modal" id="modal-carrito" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content" action="../InsertarSalida" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalle de Venta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row px-3">
+                            <div class="col">
+                                <div class="form-row">
+                                    <label class="font-weight-bold">Datos del Cliente</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="idCliente" placeholder="Id" required>
+                                        <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
+                                        <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Descripción de la Venta</label>
+                                    <div class="input-group">
+                                         <textarea class="form-control" name="descripcion" id="descripcion" required rows="3"></textarea>                                       
+                                    </div>
+                                    <label class="font-weight-bold mt-2">Total a Pagar</label>
+                                    <div class="input-group">                                        
+                                        <input type="text" class="form-control" name="total" value="<%=total%>">
+                                    </div>                                   
+                                    <label class="font-weight-bold mt-2">Forma de Pago</label>
+                                    <div class="input-group">                                        
+                                     <select class="form-control form-control-sm">
+                                    <option>Efectivo</option>
+                                    <option>Tarjeta Debito</option>
+                                    <option>Tarjeta Credito</option>
+                                    </select>
+                                    </div>                                   
+                                    
+                                   
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row px-3">
+                            <div class="col text-right mt-3">
+                                <input class="btn btn-success" type="submit" value="Guardar" name="tipo_op"></input>
+                            </div>
+                        </div>	
+                    </div>
+                </form>
             </div>
         </div>
         <script src="../lib/jquery-3.4.1.min.js"></script>
