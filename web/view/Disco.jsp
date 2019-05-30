@@ -19,14 +19,24 @@
         <link rel="stylesheet" href="../lib/bootstrap.min.css">
         <link rel="stylesheet" href="../lib/animate.css">
         <link rel="stylesheet" href="../css/util.css">
+        <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <%
+            String var = "";
+            
+            if(session.getAttribute("idUsuario") != null){
+                var = session.getAttribute("idUsuario").toString();
+            }
+            
+            if(!var.equals("")){
+        %>
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
                 Discográfica
             </a>
-            <a class="navbar-brand text-right" >Usuario</a>
+            <a class="navbar-brand text-right" ><%=session.getAttribute("nombreUsuario")%></a>
         </nav>
         <div class="container-fluid">
             <div class="row">
@@ -39,7 +49,7 @@
                         <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
+                    <a href="../CerrarSesion" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
                 <div class="row col-10 mt-3">
                     <div class="container-fluid">
@@ -56,6 +66,8 @@
                                 String imagen = "";
                                 String genero = "";
                                 String descripcion = "";
+                                String precio ="";
+                                String cantidad ="";
                                 for (Object[] disco : dis) {
                                     id = String.valueOf(disco[0]);
                                     titulo = String.valueOf(disco[1]);
@@ -63,6 +75,9 @@
                                     imagen = String.valueOf(disco[3]);
                                     genero = String.valueOf(disco[4]);
                                     descripcion = String.valueOf(disco[5]);
+                                    precio = String.valueOf(disco[6]);
+                                    cantidad = String.valueOf(disco[7]);
+                                    
                                 }
                             %>
                             <div class="col-4">
@@ -71,36 +86,79 @@
 
                                         <img src="../resources/images/<%=imagen%>" width="100%" style="border-radius:15px" alt="Imagen de disco">
                                     </div>
+                                    <%
+                                        if(!session.getAttribute("tipoUsuario").equals("Cliente")){
+                                    %>
                                     <div class="col-12 mt-3">
-                                        <div class="row">
+                                        <%                                        
+                                        if (Integer.parseInt(cantidad)!=0){
+                                        %>
+                                        <form  name="myForm" action="../agregarAlCarrito" method="post" onsubmit="return validaCantidad(<%=cantidad%>)">  
+                                         <div class="row">
                                             <div class="col-6">
-                                                <button type="button" class="btn btn-success col-12">Success</button>
+                                                <input type="hidden" name="idDisco" value="<%=id%>"> 
+                                                <button type="submit"  class="btn btn-success col-12">Success</button>
                                             </div>
                                             <div class="col-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon3">Cantidad</span>
                                                     </div>
-                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                    <input type="text" name="cantidad" class="form-control" id="basic-url" aria-describedby="basic-addon3" required>
                                                 </div>
                                             </div>
+                                          
                                         </div>
+                                        </form>
+                                        
+                                        <%   
+                                        }else{
+                                         %>
+                                         <div class="row">
+                                            <div class="col-6">
+                                                <button type="button" class="btn btn-danger col-12" disabled>AGOTADO</button>
+                                            </div>                                           
+                                        </div>
+                                        
+                                        <%    
+                                        }%>                                   
                                     </div>
+                                    <%
+                                        }
+                                    %>
                                 </div>
 
                             </div>
                             <div class="col-7">
                                 <h1 style="display:inline"><%= titulo %></h1><span> (<%= genero %>)</span><br>
                                 <h4 class="text-muted"><%= artista%></h4>
+                                <h4 class="mt-5">$<%= precio%></h4>
+                                <!--<h4 class="mt-5"><%= cantidad %></h4>-->
                                 <p class="mt-5"><%=descripcion%></p>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>                                          
             </div>
         </div>
+                            
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
+        <script src="../js/carrito.js"></script>
+        <%
+            }else{
+        %>
+        <script type="text/javascript">
+            alert("Por favor inicia sesión para poder ingresar al sitio");
+            setTimeout("redireccionar()", 1); //tiempo expresado en milisegundos
+            
+            function redireccionar(){
+                window.location="../index.html";
+            }
+        </script>
+        <%
+            }
+        %>
     </body>
 </html>

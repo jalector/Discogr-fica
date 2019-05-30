@@ -37,7 +37,7 @@ public class AlmacenController implements Serializable {
     }
     
     public List<Almacen> getRegistrosAlmacen(){
-        String query = "select a.id, a.tipo_movimiento, a.fecha_movimiento, a.descripcion, cliente.nombre, usuario.nombre " +
+        String query = "select a.id, a.tipo_movimiento, a.fecha_movimiento, a.descripcion, cliente.id, cliente.nombre, usuario.nombre " +
                 "from Almacen a " +
                 "join Usuario cliente " +
                 "on cliente.id = id_cliente " +
@@ -60,11 +60,12 @@ public class AlmacenController implements Serializable {
             almacen.setDescripcion(String.valueOf(rawMovimiento[3]));
             
             Usuario cliente = new Usuario();
-            cliente.setNombre(String.valueOf(rawMovimiento[4]));            
+            cliente.setId(Integer.parseInt(String.valueOf(rawMovimiento[4])));
+            cliente.setNombre(String.valueOf(rawMovimiento[5]));            
             almacen.setIdCliente(cliente);
             
             Usuario usuario = new Usuario();
-            usuario.setNombre(String.valueOf(rawMovimiento[5]));            
+            usuario.setNombre(String.valueOf(rawMovimiento[6]));            
             almacen.setIdUsuario(usuario);
             
             movimientos.add(almacen);

@@ -43,7 +43,7 @@ public class ModificarCliente extends HttpServlet {
                 usuario.setCorreo(request.getParameter("correo_mod"));
                 usuario.setTelefono(request.getParameter("telefono_mod"));
                 usuario.setContrasenia(request.getParameter("repPass_mod"));
-                usuario.setIdUsuarioModificacion(2);
+                usuario.setIdUsuarioModificacion(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
                 usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
                 em.getTransaction().begin();
@@ -53,7 +53,6 @@ public class ModificarCliente extends HttpServlet {
                 response.sendRedirect("view/Cliente.jsp");
             } catch (Exception e) {
                 e.printStackTrace();
-                //response.sendRedirect("view/Usuario.jsp");
             }
     }
 

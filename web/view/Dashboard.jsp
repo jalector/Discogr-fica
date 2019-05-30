@@ -19,14 +19,24 @@
         <link rel="stylesheet" href="../lib/bootstrap.min.css">
         <link rel="stylesheet" href="../lib/animate.css">
         <link rel="stylesheet" href="../css/util.css">
+        <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <%
+            String var = "";
+            
+            if(session.getAttribute("idUsuario") != null){
+                var = session.getAttribute("idUsuario").toString();
+            }
+            
+            if(!var.equals("")){
+        %>
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
                 Discográfica
             </a>
-            <a class="navbar-brand text-right" >Usuario</a>
+            <a class="navbar-brand text-right" ><%=session.getAttribute("nombreUsuario")%></a>
         </nav>
         <div class="container-fluid">
             <div class="row">
@@ -39,25 +49,63 @@
                         <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
+                    <a href="../CerrarSesion" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
                 <div class="row col-10 mt-3">
-                <% 
-                    ConsultasDisco conDisco = new ConsultasDisco();
-                    List<Object[]> listaDisco = conDisco.infoGralDisco();
-                    for (Object []disco : listaDisco) {
-                        out.println("<div class='col-3 mb-3'>");
-                        out.println("<div class='card'>");
-                        out.println("<img src='../resources/images/"+String.valueOf(disco[2])+"' class='card-img-top'>");
-                        out.println("<div class='card-body'>");
-                        out.println("<h5 class='card-title'>"+String.valueOf(disco[1])+"</h5>");
-                        out.println("<p class='card-text'>"+String.valueOf(disco[3])+"</p>");
-                        out.println("<a href='Disco.jsp?id="+String.valueOf(disco[0])+"' class='btn btn-primary'>Más detalles</a>");
-                        out.println("</div>");
-                        out.println("</div>");
-                        out.println("</div>");
-                    }
-                %>
+                    <div class="container-fluid p-3">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Discos</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <form class="form-inline col-7 offset-5" action="../BuscarDiscoPrincipal" method="GET">
+                                <input type="text" class="form-control col-8 mx-4" id="titulo" name="titulo" placeholder="Título" value="<%
+                                    String titulo = request.getParameter("titulo");
+
+                                    if (titulo == null) {
+                                        out.println("");
+                                    } else {
+                                        out.println(request.getParameter("titulo"));
+                                    }
+
+                                       %>">
+                                <button type="submit" class="btn btn-success col-3">Buscar</button>
+                            </form>
+                        </div>
+                        <div class="row">
+                            <%  
+                                ConsultasDisco conDisco = new ConsultasDisco();
+                                List<Object[]> listaDisco = conDisco.infoGralDisco();
+
+                                //Obtener el nombre de la URL
+                                String registros = request.getParameter("titulo");
+                                //Si no hay ningún nombre en la URL cargar todos los registros
+                                if (registros == null) {
+                                    listaDisco = conDisco.infoGralDisco();
+                                } else {
+                                    listaDisco = conDisco.buscarDiscoDashboard(registros);
+                                }
+
+                                int contRow = 0;
+                                for (Object[] disco : listaDisco) {
+
+                    out.println("<div class='col-3 mb-3'>");
+                    out.println("<div class='card'>");
+                    out.println("<img src='../resources/images/"+String.valueOf(disco[2])+"' class='card-img-top'>");
+                    out.println("<div class='card-body'>");
+                    out.println("<h5 class='card-title'>"+String.valueOf(disco[1])+"</h5>");
+                    out.println("<p class='card-text'>"+String.valueOf(disco[3])+"</p>");
+                    out.println("<p class='card-text'>$"+String.valueOf(disco[4])+"</p>");
+                    out.println("<a href='Disco.jsp?id="+String.valueOf(disco[0])+"' class='btn btn-primary'>Más detalles</a>");
+                    out.println("</div>");
+                    out.println("</div>");
+                    out.println("</div>");
+                                }
+                            %>
+                        </div>        
+                    </div>
+
                 </div>
                 <!--
                 <div class="row col-10 mt-3">
@@ -109,5 +157,19 @@
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
+        <%
+            }else{
+        %>
+        <script type="text/javascript">
+            alert("Por favor inicia sesión para poder ingresar al sitio");
+            setTimeout("redireccionar()", 1); //tiempo expresado en milisegundos
+            
+            function redireccionar(){
+                window.location="../index.html";
+            }
+        </script>
+        <%
+            }
+        %>
     </body>
 </html>
