@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="controller.AlmacenController"%>
+<%@page import="model.Almacen"%>
+<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,14 +17,24 @@
         <link rel="stylesheet" href="../lib/bootstrap.min.css">
         <link rel="stylesheet" href="../lib/animate.css">
         <link rel="stylesheet" href="../css/util.css">
+        <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <%
+            String var = "";
+            
+            if(session.getAttribute("idUsuario") != null){
+                var = session.getAttribute("idUsuario").toString();
+            }
+            
+            if(!var.equals("")){
+        %>
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
                 Discográfica
             </a>
-            <a class="navbar-brand text-right" >Usuario</a>
+            <a class="navbar-brand text-right" ><%=session.getAttribute("nombreUsuario")%></a>
         </nav>
         <div class="container-fluid">
             <div class="row">
@@ -34,7 +47,7 @@
                         <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
+                    <a href="../CerrarSesion" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
                 <div class="col-10 mt-3">
                     <div class="container-fluid p-3">
@@ -59,61 +72,28 @@
                                         </tr>					
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Salida</td>
-                                            <td>12 May, 2019</td>
-                                            <td>Saul Ulises</td>
-                                            <td>Rafael Paniagua</td>
-                                            <td>Venta de discos de 50th cent</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-almacen">Detalle</button>
-                                            </td>
-                                        </tr>
+                                        <%
+                                            AlmacenController ac = new AlmacenController();
+                                            
+                                            List <Almacen> movimientos = ac.getRegistrosAlmacen();
+                                            for (Almacen movimiento : movimientos) {
+
+                                                out.println("<tr>");
+                                                    out.println("<td>"+movimiento.getId()+"</td>");
+                                                    out.println("<td>"+movimiento.getTipoMovimiento()+"</td>");
+                                                    out.println("<td>"+movimiento.getFechaMovimiento()+"</td>");
+                                                    out.println("<td>"+movimiento.getDescripcion()+"</td>");
+                                                    out.println("<td>"+movimiento.getIdCliente().getNombre()+"</td>");
+                                                    out.println("<td>"+movimiento.getIdUsuario  ().getNombre()+"</td>");
+                                                    
+                                                    out.println("<td>");
+                                                    out.println("<a href='AlmacenDetalle.jsp?movimoento="+ movimiento.getId() +"' class='btn btn-sm btn-info'>Detalle</a>");
+                                                    
+                                                    out.println("</td>");
+                                                            
+                                                out.println("</tr>");
+                                            }
+                                        %>                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -260,5 +240,19 @@
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
+        <%
+            }else{
+        %>
+        <script type="text/javascript">
+            alert("Por favor inicia sesión para poder ingresar al sitio");
+            setTimeout("redireccionar()", 1); //tiempo expresado en milisegundos
+            
+            function redireccionar(){
+                window.location="../index.html";
+            }
+        </script>
+        <%
+            }
+        %>
     </body>
 </html>

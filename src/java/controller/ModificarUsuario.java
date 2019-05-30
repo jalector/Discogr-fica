@@ -44,7 +44,7 @@ public class ModificarUsuario extends HttpServlet {
                 usuario.setTelefono(request.getParameter("telefono_mod"));
                 usuario.setTipoUsuario(request.getParameter("tipo_mod"));
                 usuario.setContrasenia(request.getParameter("repPass_mod"));
-                usuario.setIdUsuarioModificacion(2);
+                usuario.setIdUsuarioModificacion(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
                 usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
                 em.getTransaction().begin();
