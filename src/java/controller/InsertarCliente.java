@@ -50,9 +50,9 @@ public class InsertarCliente extends HttpServlet {
                 usuario.setTelefono(request.getParameter("telefono"));
                 usuario.setTipoUsuario("Cliente");
                 usuario.setContrasenia(request.getParameter("repPass"));
-                usuario.setIdUsuarioAlta(1);
+                usuario.setIdUsuarioAlta(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
                 usuario.setFechaAlta(String.valueOf(hourdateFormat.format(date)));
-                usuario.setIdUsuarioModificacion(1);
+                usuario.setIdUsuarioModificacion(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
                 usuario.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
                 em.getTransaction().begin();

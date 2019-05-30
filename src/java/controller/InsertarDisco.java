@@ -42,9 +42,9 @@ public class InsertarDisco extends HttpServlet {
             disco.setGenero(request.getParameter("genero"));
             disco.setUbicacion(request.getParameter("ubicacion"));
             disco.setDescripcion(request.getParameter("descripcion"));
-            disco.setIdUsuarioAlta(1);
+            disco.setIdUsuarioAlta(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
             disco.setFechaAlta(String.valueOf(hourdateFormat.format(date)));
-            disco.setIdUsuarioModificacion(1);
+            disco.setIdUsuarioModificacion(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
             disco.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
 
             em.getTransaction().begin();

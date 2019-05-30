@@ -47,7 +47,7 @@ public class ModificarDisco extends HttpServlet {
             disco.setGenero(request.getParameter("genero_mod"));
             disco.setUbicacion(request.getParameter("ubicacion_mod"));
             disco.setDescripcion(request.getParameter("descripcion_mod"));
-            disco.setIdUsuarioModificacion(1);
+            disco.setIdUsuarioModificacion(Integer.parseInt(request.getSession().getAttribute("idUsuario").toString()));
             disco.setFechaModificacion(String.valueOf(hourdateFormat.format(date)));
             
             em.getTransaction().begin();

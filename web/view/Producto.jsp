@@ -21,14 +21,24 @@
         <link rel="stylesheet" href="../lib/bootstrap.min.css">
         <link rel="stylesheet" href="../lib/animate.css">
         <link rel="stylesheet" href="../css/util.css">
+        <link rel="icon" href="../resources/images/favicon.ico" type="image/x-icon">
     </head>
     <body>
+        <%
+            String var = "";
+            
+            if(session.getAttribute("idUsuario") != null){
+                var = session.getAttribute("idUsuario").toString();
+            }
+            
+            if(!var.equals("")){
+        %>
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="#">
                 <img src="../resources/images/icono.jpg" width="100px" height="35px" class="d-inline-block align-top" alt="">
                 Discográfica
             </a>
-            <a class="navbar-brand text-right" >Usuario</a>
+            <a class="navbar-brand text-right" ><%=session.getAttribute("nombreUsuario")%></a>
         </nav>
         <div class="container-fluid">
             <div class="row">
@@ -41,7 +51,7 @@
                         <a href="Producto.jsp" class="list-group-item list-group-item-action">Productos</a>
                         <a href="Almacen.jsp" class="list-group-item list-group-item-action">Almacen</a>
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
+                    <a href="../CerrarSesion" class="list-group-item list-group-item-action" style="position:absolute;bottom: 0px">Cerrar sesión</a>
                 </div>
                 <div class="col-10 mt-3">
                     <div class="container-fluid p-3">
@@ -110,9 +120,11 @@
                                                 out.println("<td><span id='genero" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[5]) + "</span></td>");
                                                 out.println("<td><span id='ubicacion" + String.valueOf(disco[0]) + "'>" + String.valueOf(disco[6]) + "</span></td>");
                                                 out.println("<td class='text-center'>"
-                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaProducto.jsp?id=" + String.valueOf(disco[0]) + "'>Modificar</a>"
-                                                        + "<a class='btn btn-danger btn-sm mr-1' href='../EliminarDisco?id=" + String.valueOf(disco[0]) + "'>Eliminar</a>"
-                                                        + "</td>");
+                                                        + "<a class='btn btn-warning btn-sm mr-1' href='ActualizaProducto.jsp?id=" + String.valueOf(disco[0]) + "'>Modificar</a>");
+                                                if(!session.getAttribute("tipoUsuario").equals("Cliente")){
+                                                    out.println("<a class='btn btn-danger btn-sm mr-1' href='../EliminarDisco?id=" + String.valueOf(disco[0]) + "'>Eliminar</a>");
+                                                }
+                                                out.println("</td>");
                                                 out.println("</tr>");
                                             }
                                         %>
@@ -120,11 +132,17 @@
                                 </table>
                             </div>
                         </div>
+                        <%
+                            if(!session.getAttribute("tipoUsuario").equals("Cliente")){
+                        %>
                         <div class="row">
                             <div class="col text-right">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#modal-disco-ins">Registrar nuevo disco</button>
                             </div>
                         </div>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>
@@ -322,5 +340,19 @@
         <script src="../lib/jquery-3.4.1.min.js"></script>
         <script src="../lib/popper.min.js"></script>
         <script src="../lib/bootstrap.min.js"></script>
+        <%
+            }else{
+        %>
+        <script type="text/javascript">
+            alert("Por favor inicia sesión para poder ingresar al sitio");
+            setTimeout("redireccionar()", 1); //tiempo expresado en milisegundos
+            
+            function redireccionar(){
+                window.location="../index.html";
+            }
+        </script>
+        <%
+            }
+        %>
     </body>
 </html>
